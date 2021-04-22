@@ -1,4 +1,7 @@
 from django.shortcuts import render
+from django.http import HttpResponse
+from django.views import View
+from django.views.decorators.csrf import csrf_exempt
 
 
 def advertisement_list(request, *args, **kwargs):
@@ -39,7 +42,12 @@ def categories(request, *args, **kwargs):
     category_list = ['автомобиль', 'ремонт', 'магия']
     return render(request, 'advertisements/categories.html', {'category_list': category_list})
 
-def regions(request, *args, **kwargs):
-    region_list = ['Москва', 'Московская область', 'республика Алтай', 'Вологодская область']
-    return render(request, 'advertisements/regions.html', {'region_list': region_list})
+#@method_decorator(csrf_exempt,name='dispatch')
+class Regions(View):
 
+    def get(self,request):
+        region_list = ['Москва', 'Московская область', 'республика Алтай', 'Вологодская область']
+        return render(request, 'advertisements/regions.html', {'region_list': region_list})
+    @csrf_exempt
+    def post(self,request):
+        return HttpResponse(content='регион успешно создан', content_type=None, status=200)
