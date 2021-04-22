@@ -1,7 +1,14 @@
 <html>
+<h3>Наши объявления:</h3>
 <ul>
-    <li>Мастер на час</li>
-    <li>Выведение из запоя</li>
-    <li>Услуги экскаватора-погрузчика, гидромолота, ямобура</li>
+	{% for ad in advertisements %}
+    <li>{{ ad }}</li>
+    {% endfor %}
+    {% for ad in advertisements_1 %}
+    <li>{{ ad }}</li>
+    {% endfor %}
+    {% for ad in advertisements_2 %}
+    <li>{{ ad }}</li>
+    {% endfor %}
 </ul>
 </html>
