@@ -25,7 +25,7 @@ SECRET_KEY = 'd0p-d=h0^6f%t69315alz))w3q=%87f6o-72@k^oczeo58r_--'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -44,7 +44,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -52,6 +52,7 @@ MIDDLEWARE = [
     'board.middleware.forbidden_ip_middleware.ForbiddenIPMiddleware',
     'board.middleware.delay_n_requests_middleware.DelayNRequestsMiddleware',
     'board.middleware.morethan_k_requests_middleware.MorethanKRequestsMiddleware',
+    'board.middleware.information_logging_middleware.InformationLoggingMiddleware',
 ]
 
 ROOT_URLCONF = 'board.urls'

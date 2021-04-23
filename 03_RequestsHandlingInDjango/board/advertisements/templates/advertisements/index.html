@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<form method="POST" action="">
+		<div>
+			<label for="category-choice">Выберите категорию:</label>
+			<input list="category_list" id="category-choice" name="category-choice" />
+			<datalist id="category_list">
+			{% for elem in categories %}
+				<option value="{{ elem }}">
+			{% endfor %}
+			</datalist>
+		</div>
+		<div>	
+			<label for="region-choice">Выберите регион:</label>
+			<input list="region_list" id="region-choice" name="region-choice" />
+			<datalist id="region_list">
+				{% for elem in regions %}
+					<option value="{{ elem }}">
+				{% endfor %}
+			</datalist>
+		</div>
+		<div>
+			<label for="search">Слово для поиска:</label>
+			<input id="search" type="text" name="input" placeholder="Ключевое слово">
+		</div>
+		<div><button type="submit">Найти!</button></div>
+	</form>
+</body>
+</html>
