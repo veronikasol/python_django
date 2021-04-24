@@ -100,3 +100,12 @@ date: 23.4.2021  time: 10:31 url: http://127.0.0.1:8000/advertisement method: GE
 date: 23.4.2021  time: 10:33 url: http://127.0.0.1:8000/ method: GET ip: 127.0.0.1
 date: 23.4.2021  time: 10:33 url: http://127.0.0.1:8000/ method: POST ip: 127.0.0.1
 date: 23.4.2021  time: 10:34 url: http://127.0.0.1:8000/ method: GET ip: 127.0.0.1
+date: 24.4.2021  time: 9:3 url: http://127.0.0.1:8000/ method: GET ip: 127.0.0.1
+date: 24.4.2021  time: 9:3 url: http://127.0.0.1:8000/favicon.ico method: GET ip: 127.0.0.1
+date: 24.4.2021  time: 9:3 url: http://127.0.0.1:8000/ method: POST ip: 127.0.0.1
+date: 24.4.2021  time: 9:3 url: http://127.0.0.1:8000/ method: GET ip: 127.0.0.1
+date: 24.4.2021  time: 9:3 url: http://127.0.0.1:8000/ method: POST ip: 127.0.0.1
+date: 24.4.2021  time: 9:5 url: http://127.0.0.1:8000/ method: GET ip: 127.0.0.1
+date: 24.4.2021  time: 9:5 url: http://127.0.0.1:8000/ method: POST ip: 127.0.0.1
+date: 24.4.2021  time: 9:5 url: http://127.0.0.1:8000/ method: GET ip: 127.0.0.1
+date: 24.4.2021  time: 9:5 url: http://127.0.0.1:8000/ method: POST ip: 127.0.0.1

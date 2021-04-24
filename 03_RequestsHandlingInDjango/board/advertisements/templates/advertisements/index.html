@@ -4,7 +4,7 @@
 	<title></title>
 </head>
 <body>
-	<form method="POST" action="">
+	<form method="POST" action=""> {% csrf_token %}
 		<div>
 			<label for="category-choice">Выберите категорию:</label>
 			<input list="category_list" id="category-choice" name="category-choice" />
