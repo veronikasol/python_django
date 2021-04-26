@@ -1,5 +1,7 @@
 from django.shortcuts import render
 import random
+from django.views.generic.list import ListView
+from django.views.generic.detail import DetailView
 from advertisements_app.models import Advertisement
 
 def advertisement_detail(request, *args, **kwargs):
@@ -11,3 +13,14 @@ def advertisement_detail(request, *args, **kwargs):
 	chosen.save()
 	return render(request,'advertisements_app/advertisement_detail.html',
 		{'ad':chosen})
+
+
+class AdvertisementListView(ListView):
+	model = Advertisement
+	template_name = 'advertisement_list.html'
+	context_object_name = 'advertisement_list'
+	queryset = Advertisement.objects.all()[:5]
+
+
+class AdvertisementDetailView(DetailView):
+	model = Advertisement

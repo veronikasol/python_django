@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	<h2> Объявления</h2>
+	{% if advertisement_list %}
+	<ul>
+		{% for ad in advertisement_list %}
+		<li>
+			<a href="advertisements/{{ ad.id }}">
+				{{ ad.title }} | Цена: {{ ad.price}} рублей| {{ ad.ad_type }}
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+	{% else %}
+	<h3>Пока нет объявлений для показа.</h3>
+	{% endif %}
+</body>
+</html>

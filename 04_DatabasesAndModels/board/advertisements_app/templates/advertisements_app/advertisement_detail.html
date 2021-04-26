@@ -1,15 +1,28 @@
+{% load advertisements_extra %}
 <!DOCTYPE html>
 <html>
 <head>
 	<title></title>
 </head>
 <body>
-<h2>Объявление: {{ ad.title }}</h2>
-<h3> Описание:</h3>
-<p> {{ ad.description }}</p>
-<h4> Цена:</h4>
-<p> {{ ad.price }} рублей </p>
+<h2>{{ object.title }}</h2>
+<h4> Цена: {{ object.price }} рублей | {{ object.price|convert_to_usd }} </h4>
+<p> {{ object.description }}</p>
+<p>Рубрика: 
+	{% if object.ad_topic %}
+		{{ object.ad_topic }} 
+	{% endif %}
+</p>
+<p>
+	Тип объявления: {% if object.ad_type %}{{ object.ad_type }}{% endif %}
+</p>
+<p>
+	Контакты: 
+	{% if object.ad_author %}
+		{{ object.ad_author.email }}
+	{% endif %}
+</p>
 <hr>
-<p>Количесво просмотров: {{ ad.views_count }}</p>
+<p>Количесво просмотров: {{ object.views_count }}</p>
 </body>
 </html>
