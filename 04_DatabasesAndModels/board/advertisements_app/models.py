@@ -2,7 +2,7 @@ from django.db import models
 
 
 class Advertisement(models.Model):
-	title = models.CharField(max_length=1500)
+	title = models.CharField(max_length=1500, db_index=True)
 	description = models.TextField()
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
@@ -12,6 +12,13 @@ class Advertisement(models.Model):
 		on_delete=models.CASCADE, related_name='ads')
 	ad_type = models.ForeignKey('AdvertisementType', default=None, null=True,
 		on_delete=models.CASCADE, related_name='ads')
+
+	def __str__(self):
+		return self.title
+
+	class Meta:
+		db_table = 'Advertisements'
+		ordering = ['title']
 
 
 class AdvertisementStatus(models.Model):
