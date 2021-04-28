@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ news.title }}</title>
+</head>
+<body>
+	<div id="news_devision">
+		<h2> {{ news.title }}</h2>
+		<h4>{{ news.content }}</h4>
+		<p> 
+			Новость создана: {{ news.created_at }} | Отредактирована: {{ news.edited_at }}
+		</p>
+	</div>
+	<hr>
+	<div id="comments_devision">
+		<h4> Комментарии: </h4>
+		{% for item in comments%}
+		<div class="comment">
+			<p>От: {{ item.username }} </p> 
+			{{ item.content | linebreaks }}
+		</div>
+		{% empty %}
+		<p>Пока нет ни одного комментария.</p>
+		{% endfor %}
+		<hr>
+		<p>Добавить комментарий:</p>
+		{% if new_comment %}
+		<h4> Ваш комментарий был добавлен! </h4>
+		{% else %}
+		<form method="post" action="">
+			{% csrf_token %}
+			{{ comment_form.as_p}}
+			<button type="submit">Оставить комментарий</button>
+		</form>
+		{% endif %}
+	</div>
+
+</body>
+</html>
