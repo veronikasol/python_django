@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.views.generic.list import ListView
 from django.views import View
@@ -14,7 +14,7 @@ class NewsListView(ListView):
 
 
 def news_detail(request, news_id):
-	news = News.objects.get(pk=news_id) # метод get y News
+	news = News.objects.get(pk=news_id)
 	comments = news.comments.all()
 	new_comment = None
 	if request.method == 'POST':
@@ -26,8 +26,8 @@ def news_detail(request, news_id):
 	else:
 		comment_form = CommentForm()
 
-	return render(request,'app_news/news_detail.html', {'news':news, 'comments':comments,
-		'new_comment':new_comment,'comment_form':comment_form})
+	return render(request,'app_news/news_detail.html', {'news':news, 'news_id':news_id,
+		'comments':comments, 'new_comment':new_comment,'comment_form':comment_form})
 
 
 class NewsFormView(View):
@@ -42,3 +42,19 @@ class NewsFormView(View):
 			News.objects.create(**news_form.cleaned_data)
 			return HttpResponseRedirect('/')
 		return render(request, 'app_news/news_form.html', context={'news_form':news_form})
+
+class EditNewsFormView(View):
+	def get(self,request,news_id):
+		news = News.objects.get(pk=news_id)
+		news_form = NewsForm(instance=news)
+		return render(request,'app_news/news_form.html', 
+			context={'news_form':news_form, 'news_id':news_id})
+
+	def  post(self,request,news_id):
+		news = News.objects.get(pk=news_id)
+		news_form = NewsForm(request.POST, instance=news)
+		if news_form.is_valid():
+			news.save()
+			return HttpResponseRedirect('/'+str(news_id))
+		return render(request, 'app_news/news_form.html', context={'news_form':news_form,
+			'news_id':news_id})
