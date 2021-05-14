@@ -52,4 +52,4 @@ class AdvertisementAuthor(models.Model):
 	telephone = models.CharField(max_length=12)
 
 	def __str__(self):
-		return self.name
+		return '%s %s'%(self.id,self.name)
