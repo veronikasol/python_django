@@ -8,7 +8,8 @@ class News(models.Model):
 	is_active = models.BooleanField(verbose_name='Активна?')
 
 	def __str__(self):
-		return self.title
+		return f'{self.title}, от: {self.created_at.date()} ({"активна" if self.is_active else "неактивна"})'
+
 
 	class Meta:
 		db_table = 'News'
@@ -22,7 +23,7 @@ class Comment(models.Model):
 		on_delete=models.CASCADE, related_name='comments', verbose_name='новость')
 
 	def __str__(self):
-		return self.content
+		return f'От {self.username}: {self.content[:15]}...'
 
 	class Meta:
 		db_table = 'Comment'
