@@ -1,14 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
 	<h2>Добавьте новость в форму ниже:</h2>
 	<form method="post" action="">
 		{% csrf_token %}
 		{{ news_form.as_p }}
 		<button type="submit">Опубликовать</button>		
 	</form>
-</body>
-</html>
+{% endblock %}

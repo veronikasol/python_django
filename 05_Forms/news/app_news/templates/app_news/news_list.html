@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title></title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% block content %}
 	<h3> Сегодня в новостях: </h3>
 	<ul>
 		{% for item in news_list %}
@@ -18,5 +14,4 @@
 	<p>
 		<a href="{% url 'news_form' %}"> Добавить новость </a>
 	</p>	
-</body>
-</html>
+{% endblock %}

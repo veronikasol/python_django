@@ -6,6 +6,7 @@ from django.views.generic.list import ListView
 from django.views import View
 from app_news.models import News, Comment
 from app_news.forms import CommentForm, NewsForm
+from django.contrib.auth.views import LoginView, LogoutView
 
 class NewsListView(ListView):
 	model = News
@@ -17,11 +18,15 @@ def news_detail(request, news_id):
 	news = News.objects.get(pk=news_id)
 	comments = news.comments.all()
 	new_comment = None
+	comment_user = request.user
 	if request.method == 'POST':
 		comment_form = CommentForm(data=request.POST)
 		if comment_form.is_valid():
 			new_comment = comment_form.save(commit=False)
 			new_comment.news = news
+			if comment_user.is_authenticated:
+				new_comment.user = comment_user
+				new_comment.username = comment_user.username
 			new_comment.save()
 	else:
 		comment_form = CommentForm()
@@ -58,3 +63,10 @@ class EditNewsFormView(View):
 			return HttpResponseRedirect('/'+str(news_id))
 		return render(request, 'app_news/news_form.html', context={'news_form':news_form,
 			'news_id':news_id})
+
+
+class AnotherLoginView(LoginView):
+	template = 'app_news/login.html'
+
+class AnotherLogoutView(LogoutView):
+	next_page = '/'

@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class News(models.Model):
 	title = models.CharField(max_length=1000, verbose_name='Заголовок новости')
@@ -18,6 +19,9 @@ class News(models.Model):
 
 class Comment(models.Model):
 	username = models.CharField(max_length=20, verbose_name='имя пользователя')
+	#Измените таблицу “Комментарий” - добавьте поле user c FK связью с таблицей User
+	user = models.ForeignKey(User, default=None, null=True,
+		on_delete=models.CASCADE, related_name='comments', verbose_name='пользователь')
 	content = models.TextField(verbose_name='текст комментария')
 	news = models.ForeignKey('News', default=None, null=True,
 		on_delete=models.CASCADE, related_name='comments', verbose_name='новость')
