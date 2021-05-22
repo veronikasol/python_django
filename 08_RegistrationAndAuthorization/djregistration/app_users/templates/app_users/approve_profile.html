@@ -1,0 +1,10 @@
+
+<h2>Отредактировать профиль {{ object.username }}</h2>
+<p>Установите флаг верификации, для того, чтобы пользователь мог добавлять новости.</p>
+
+	<form method="post" action="">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<p><button type="submit">Изменить права пользователя</button></p>
+		<a href="{% url 'news' %}">Отменить</a>		
+	</form>

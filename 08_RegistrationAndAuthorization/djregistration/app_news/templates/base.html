@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{% block title %} Новости {% endblock %}</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div class="navigation">
+		<nav>
+			<a href="{% url 'news' %}">Новости</a>
+			<div>
+				<ul class="nav">
+					{% if request.user.is_authenticated %}
+					<li class="nav-item">
+					<a href="{% url 'user_profile' request.user.id %}">
+							привет, {{ request.user.username }}!
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="{% url 'logout' %}">Выйти</a>
+					</li>
+					{% else %}
+					<li class="nav-item">
+						<a href="{% url 'login' %}">Вход</a>
+					</li>
+					<li class="nav-item">
+						<a href="{% url 'register' %}">Создать учетную запись</a>
+					</li>
+					{% endif %}
+				</ul>
+			</div>
+		</nav>
+	</div>
+	<div class="main-body">
+		<div class="main-content">
+			{% block content %}{% endblock %}
+		</div>
+	</div>
+
+</body>
+</html>

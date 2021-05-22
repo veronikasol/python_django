@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+	Удалить новость
+{% endblock %}
+{% block content %}
+	<h2>Удалить новость {{ object.title }}</h2>
+	<div>
+		<form method="post" action="">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<p>Вы уверенны, что хотите удалить новость "{{ object }}"?</p>
+			<p><button type="submit">Удалить новость</button></p>
+			<a href="{% url 'news' %}">Отменить</a>	
+
+		</form>
+	</div>
+{% endblock %}

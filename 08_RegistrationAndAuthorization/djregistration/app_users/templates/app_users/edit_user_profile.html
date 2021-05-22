@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Редактирование учетной записи {{ user.username }}</title>
+</head>
+<body>
+	<h3>Редактирование учетной записи {{ user.username }}</h3>
+<div>
+	<form method="post">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">Отредактировать учетную запись</button>
+	</form>
+</div>
+<p><a href="{% url 'news' %}">Отменить редактирование</a></p>
+</body>
+</html>

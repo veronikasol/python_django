@@ -1,0 +1,29 @@
+<h2>Просмотреть профили пользователей </h2>
+<p>Выберете пользователя, чьи права на добавление новостей вы хотите изменить.</p>
+<h4>Верифицированные:</h3>
+<ul>
+	{% for item in profile_list %}
+		{% if item.is_verified %}
+		<li>
+			<a href="{% url 'approve_profile' item.id %}"> {{ item.user.username }}</a> 
+		</li>
+		{% endif %}
+	{% empty %}
+	<p> Пока нет верифицированных пользователей. </p>
+	{% endfor %}
+</ul>
+<h4>Неверифицированные:</h3>
+<ul>
+	{% for item in profile_list %}
+		{% if not item.is_verified %}
+		<li>
+			<a href="{% url 'approve_profile' item.id %}"> {{ item.user.username }}</a> 
+		</li>
+		{% endif %}
+	{% empty %}
+	<p> Нет неверифицированных пользователей. </p>
+	{% endfor %}
+</ul>
+	<p>
+		<a href="{% url 'news' %}">Вернуться на главную</a>
+	</p>

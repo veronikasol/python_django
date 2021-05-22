@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}
+	{% if object %} 
+		Отредактировать новость {{ object.title }}
+	{% else %}
+		Добавить новость
+	{% endif %}
+{% endblock %}
+{% block content %}
+{% if object %}
+	<h2>Отредактировать новость {{ object.title }}</h2>
+{% else %}
+	<h2>Добавьте новость в форму ниже:</h2>
+{% endif %}
+	<form method="post" action="">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">Сохранить новость</button>		
+	</form>
+{% endblock %}

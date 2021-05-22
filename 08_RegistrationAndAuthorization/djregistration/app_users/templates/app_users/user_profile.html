@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Учетная запись пользователя {{ profile.user.username }}</title>
+</head>
+<body>
+	<div id="user_profile">
+		{% if profile %}
+		<p> Учетная запись: {{ profile.user.username }}</p>
+		<p> Имя: {{ profile.user.first_name }}</p>
+		<p> Фамилия: {{ profile.user.last_name }}</p>
+		<p> Город: {{ profile.city }}</p>
+		<p> Телефон: {{ profile.phone }}</p>
+		<p> Количество опубликованных новостей: {{ news }}</p>
+		<p> Верифицированный: {% if profile.is_verified %} Да {% else %}Нет {% endif %}</p>
+		{% else %}
+		<p>Для пользователя {{ user.username }} профиль не заполнен! </p>
+		<p> Количество опубликованных новостей: {{ news }}</p>
+		{% endif %}
+		<p>
+			<a href="{% url 'edit_user_profile' user_id %}">Редактировать</a>
+		</p>
+		<p>
+			<a href="{% url 'news' %}">Вернуться на главную</a>
+		</p>
+	</div>
+</body>
+</html>
