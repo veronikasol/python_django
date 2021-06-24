@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block title %}
+		Добавить публикацию
+{% endblock %}
+{% block content %}
+	<h2>Добавьте публикацию в форму ниже:</h2>
+	<form method="post" action="" enctype="multipart/form-data">
+		{% csrf_token %}
+		{{ post_form.as_p }}
+		{{ file_form.as_p }}
+		<button type="submit">Сохранить публикацию</button>		
+	</form>
+{% endblock %}

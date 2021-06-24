@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+	Редактрирование учетной записи пользователя {{ profile.user.username }}
+{% endblock %}
+{% block content %}
+	<div id="user_profile">
+		<h3>Редактрирование учетной записи {{ profile.user.username }}</h3>
+		<div>
+			<form method="post" action="" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{ form.as_p }}
+				<button type="submit">Отредактировать учетную запись</button>
+			</form>
+		</div>
+		<p><a href="{% url 'posts' %}">Отменить редактирование</a></p>
+	</div>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+	<h3>Добро пожаловать в Живой журнал!</h3>
+	{% if not request.user.is_authenticated %}
+		<h4>
+			Вы можете просматривать публикации пользователей. Зарегистрируйтесь и публикуйте свои статьи.
+		</h4>
+	{% endif %}
+	<h2>Новые публикации</h2>
+	<ul>
+		{% for item in post_list %}
+		<li>
+			<a href="{% url 'post_detail' item.id %}">{{ item.title }}</a> 
+			
+			<p>
+				Автор:<a href="{% url 'user_profile' item.user.id %}"> {{ item.user.username }}</a>
+			</p>
+			<p>
+				{{ item.content|truncatechars:101 }}</a>
+			</p>
+		</li>
+		{% empty %}
+		<p> Пока нет публикаций. </p>
+		{% endfor %}
+	</ul>
+{% endblock %}
