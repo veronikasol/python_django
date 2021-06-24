@@ -5,7 +5,7 @@ from app_news.models import News, Comment
 class CommentForm(forms.ModelForm):
 	class Meta:
 		model = Comment
-		fields = ['content']
+		fields = ['username', 'content']
 
 
 class NewsForm(forms.ModelForm):
