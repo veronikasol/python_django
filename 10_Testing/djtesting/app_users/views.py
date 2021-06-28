@@ -4,6 +4,7 @@ from .forms import RegisterForm, ProfileEditForm
 from .models import Profile
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
+from django.http import HttpResponse, HttpResponseRedirect
 
 
 def register_view(request):

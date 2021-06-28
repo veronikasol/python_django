@@ -49,6 +49,8 @@ class UserProfileViewTest(TestCase):
 	"""Зарегистрированный пользователь может  
 		посмотреть свой профиль по адресу <int:user_id>
 		изменить свой профиль по адресу edit/<int:user_id>
+		Вводит свои данные 
+		если успешно перенаправляется на страницу профиля
 	"""
 	def setUp(self):
 		self.credentials = {'username':'test_6', 'password':'secret_6A'}
@@ -73,3 +75,16 @@ class UserProfileViewTest(TestCase):
 		self.assertTemplateUsed(response, 'app_users/profile_edit.html')
 		self.assertContains(response, 'Редактрирование учетной записи пользователя')
 		self.assertIn(f'{self.user.username}', response.content.decode())
+
+	def test_can_change_profile(self):
+		response = self.client.post(f'/user/edit/{self.user.pk}', data={
+			'city':'not_default',
+			'first_name': 'test_first_name', 
+			'last_name': 'test_last_name',})
+		self.assertEqual(response.status_code, 302)
+		self.assertRedirects(response,f'/user/{self.user.pk}')
+		self.profile.refresh_from_db()
+		self.user.refresh_from_db()
+		self.assertEqual(self.profile.city,'not_default')
+		self.assertEqual(self.user.first_name,'test_first_name')
+		self.assertEqual(self.user.last_name,'test_last_name')
