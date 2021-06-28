@@ -1,5 +1,8 @@
 from django.test import TestCase
 from ..forms import RegisterForm, ProfileEditForm
+from django.contrib.auth.models import User
+from ..models import Profile
+
 
 # Тестирование приложения для учета пользователей
 """Пользователи могут 
@@ -37,14 +40,23 @@ class ProfileEditFormTest(TestCase):
 	Вводит свои данные 
 	если успешно перенаправляется на страницу профиля
 	"""
+	def setUp(self):
+		self.user = User.objects.create_user(username='test_7')
+		self.user.set_password('secret_7A')
+		self.user.save()
+		self.profile = Profile.objects.create(user=self.user, date_of_birth=None,
+				city='default', photo='anonymous.png')
 
-	def test_proper_register_form(self):
-		response = self.client.get('/user/register')
-		self.assertIsInstance(response.context['form'], RegisterForm)
+	def test_proper_profile_edit_form(self):
+		response = self.client.get(f'/user/edit/{self.user.pk}')
+		self.assertIsInstance(response.context['form'], ProfileEditForm)
 
-	def test_registration_form_renders(self):
-		form_bad = RegisterForm(data={'username':'test', 'password':''})
+	def test_profile_edit_form_renders(self):
+		form_bad = ProfileEditForm(data={})
 		self.assertFalse(form_bad.is_valid())
-		form_good = RegisterForm(data={'username':'test_1', 'password1':'secret_1A', 'password2':'secret_1A'})
+		form_good = ProfileEditForm(data={
+			'first_name': 'some_first_name', 
+			'last_name': 'some_last_name',
+			'city': 'some_city'})
 		self.assertTrue(form_good.is_valid())
 
