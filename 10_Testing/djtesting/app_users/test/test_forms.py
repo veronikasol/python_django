@@ -22,3 +22,9 @@ class UserRegistrationFormTest(TestCase):
 	def test_proper_register_form(self):
 		response = self.client.get('/user/register')
 		self.assertIsInstance(response.context['form'], RegisterForm)
+
+	def test_form_renders(self):
+		form_bad = RegisterForm(data={'username':'test', 'password':''})
+		self.assertFalse(form_bad.is_valid())
+		form_good = RegisterForm(data={'username':'test_1', 'password1':'secret_1A', 'password2':'secret_1A'})
+		self.assertTrue(form_good.is_valid())
