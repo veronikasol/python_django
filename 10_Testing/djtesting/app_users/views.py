@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .forms import RegisterForm
+from .models import Profile
+from django.contrib.auth import authenticate, login
 
 def register_view(request):
 	if request.method == 'POST':

@@ -26,3 +26,4 @@ class UserRegistrationModelTest(TestCase):
 		Profile.objects.create(user=user)
 		self.assertTrue(User.objects.all().filter(id=1))
 		self.assertIn(User.objects.first().username,'test_model')
+		self.assertTrue(Profile.objects.all().filter(id=1))
