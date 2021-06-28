@@ -1,5 +1,5 @@
 from django.test import TestCase
-from ..forms import RegisterForm
+from ..forms import RegisterForm, ProfileEditForm
 
 # Тестирование приложения для учета пользователей
 """Пользователи могут 

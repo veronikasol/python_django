@@ -63,4 +63,4 @@ def profile_edit_view(request, user_id):
 			'date_of_birth': user_profile.date_of_birth,
 			'city': user_profile.city})
 	return render(request,'app_users/profile_edit.html',
-		{'user_id':user_id, 'user': user, 'form': form})
+		{'user_id':user_id, 'user': user, 'form': form, 'profile':user_profile})

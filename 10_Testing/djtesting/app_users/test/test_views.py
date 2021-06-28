@@ -4,6 +4,7 @@ from ..views import register_view, profile_view, profile_edit_view
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from ..models import Profile
+from django.contrib.auth import authenticate
 
 
 # Тестирование приложения для учета пользователей
@@ -51,7 +52,9 @@ class UserProfileViewTest(TestCase):
 	"""
 	def setUp(self):
 		self.credentials = {'username':'test_6', 'password':'secret_6A'}
-		self.user = User.objects.create_user(**self.credentials)
+		self.user = User.objects.create_user(username='test_6')
+		self.user.set_password('secret_6A')
+		self.user.save()
 		self.profile = Profile.objects.create(user=self.user, date_of_birth=None,
 				city='default', photo='anonymous.png')
 
@@ -63,11 +66,10 @@ class UserProfileViewTest(TestCase):
 		self.assertContains(response, 'Учетная запись пользователя')
 		self.assertIn(f'{self.profile.user.username}', response.content.decode())
 
-	def test_can_see_user__edit_profile(self):
-		self.client.login(**self.credentials)
-		response = self.client.get(f'/user/edit/{self.user.pk}')
+	def test_can_see_user_edit_profile(self):
+		response = self.client.get(f'/user/edit/{self.user.pk}' )
 		self.assertEqual(response.status_code, 200)
 		self.assertEqual(response.resolver_match.func, profile_edit_view)
 		self.assertTemplateUsed(response, 'app_users/profile_edit.html')
 		self.assertContains(response, 'Редактрирование учетной записи пользователя')
-		#self.assertIn(f'{self.profile.user.username}', response.content.decode())
+		self.assertIn(f'{self.user.username}', response.content.decode())
