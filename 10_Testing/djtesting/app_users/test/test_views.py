@@ -25,5 +25,3 @@ class UserRegistrationTest(TestCase):
 		self.assertEqual(response.status_code, 200)
 		self.assertContains(response, 'Регистрация')
 
-	#def test_can_post_username_and_password(self):
-		#response = self.client.post('register', )

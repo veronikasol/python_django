@@ -1,5 +1,7 @@
 from django.test import TestCase
+from django.urls import reverse
 from django.contrib.auth.models import User
+from ..forms import RegisterForm
 
 # Тестирование приложения для учета пользователей
 """Пользователи могут 
@@ -20,7 +22,12 @@ class UserRegistrationLogicTest(TestCase):
 	"""
 
 	def test_user_created_after_post_request(self):
-		response = self.client.post('/user/register', 
-			data={'username':'test_model', 'password1':'secret_1A', 'password2':'secret_1A'})
-		self.assertEqual(response.status_code, 200)
-		self.assertIn(User.objects.first().username,'test_model')
+
+		response = self.client.post('/user/register', data={
+			'username':'test_3', 
+			'password1':'secret_1A', 
+			'password2':'secret_1A'
+			}, follow=False, secure=True)
+		self.assertEqual(response.status_code, 302)
+		self.assertIn(User.objects.first().username,'test_3')
+		
