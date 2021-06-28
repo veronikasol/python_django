@@ -1,13 +1,14 @@
 <title>
 	Учетная запись пользователя {{ profile.user.username }}
 </title>
-	
-<div id="user_profile">
-	<h3>Учетная запись пользователя {{ profile.user.username }}</h3>
-	<p>Логин: {{ profile.user.username }}</p>
-	<p> Имя: {{ profile.user.first_name }}</p>
-	<p> Фамилия: {{ profile.user.last_name }}</p>
-	<p> Город: {{ profile.city }}</p>
-	<p> Дата рождения: {{ profile.date_of_birth }}</p>
-	<p> Аватар: <img src="{{ profile.photo.url }}" width="156" height="156"></p>
-</div>
+<body>	
+	<div id="user_profile">
+		<h3>Учетная запись пользователя {{ profile.user.username }}</h3>
+		<p>Логин: {{ profile.user.username }}</p>
+		<p> Имя: {{ profile.user.first_name }}</p>
+		<p> Фамилия: {{ profile.user.last_name }}</p>
+		<p> Город: {{ profile.city }}</p>
+		<p> Дата рождения: {{ profile.date_of_birth }}</p>
+		<p> Аватар: <img src="{{ profile.photo.url }}" width="156" height="156"></p>
+	</div>
+</body>

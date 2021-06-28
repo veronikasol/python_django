@@ -1,6 +1,6 @@
 from django.test import TestCase
 from django.urls import reverse
-from ..views import register_view, profile_view
+from ..views import register_view, profile_view, profile_edit_view
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.models import User
 from ..models import Profile
@@ -35,8 +35,6 @@ class UserRegistrationTest(TestCase):
 class UserLoginViewTest(TestCase):
 	"""Зарегистрированный пользователь может 
 		залогиниться по адресу login 
-		посмотреть свой профиль по адресу <int:user_id>
-		изменить свой профиль по адресу edit/<int:user_id>
 	"""
 
 	def test_registered_user_login_view(self):
@@ -64,3 +62,12 @@ class UserProfileViewTest(TestCase):
 		self.assertTemplateUsed(response, 'app_users/profile.html')
 		self.assertContains(response, 'Учетная запись пользователя')
 		self.assertIn(f'{self.profile.user.username}', response.content.decode())
+
+	def test_can_see_user__edit_profile(self):
+		self.client.login(**self.credentials)
+		response = self.client.get(f'/user/edit/{self.user.pk}')
+		self.assertEqual(response.status_code, 200)
+		self.assertEqual(response.resolver_match.func, profile_edit_view)
+		self.assertTemplateUsed(response, 'app_users/profile_edit.html')
+		self.assertContains(response, 'Редактрирование учетной записи пользователя')
+		#self.assertIn(f'{self.profile.user.username}', response.content.decode())
