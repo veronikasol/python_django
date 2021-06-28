@@ -30,4 +30,26 @@ class UserRegistrationLogicTest(TestCase):
 			}, follow=False, secure=True)
 		self.assertEqual(response.status_code, 302)
 		self.assertIn(User.objects.first().username,'test_3')
-		
+		#self.assertRedirects(response,'/')
+
+class UserLoginLogicTest(TestCase):
+	"""так как для входа используется готовый вид и форма, 
+	проверяю только логику
+	Зарегистрированный пользователь может 
+		залогиниться по адресу login 
+		посмотреть свой профиль по адресу <int:user_id>
+		изменить свой профиль по адресу edit/<int:user_id>
+	"""
+	def setUp(self):
+		self.credentials = {'username':'test_5', 'password':'secret_5A'}
+		self.user = User.objects.create_user(**self.credentials)
+
+	def test_registered_user_can_login(self):
+		response = self.client.post('/user/login/', self.credentials, follow=True, secure=True)
+		#self.assertEqual(response.status_code, 302)
+		#self.assertRedirects(response,'/')
+
+	def test_registered_user_can_view_profile(self):
+		response = self.client.post('/user/login/', self.credentials, follow=True, secure=True)
+		#self.assertEqual(response.status_code, 302)
+		#self.assertRedirects(response,'/')
