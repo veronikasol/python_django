@@ -1,0 +1,41 @@
+<title>Регистрация</title>
+	<div>
+		<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<table>
+				<tr>
+				    <td>Логин:</td>
+				    <td>{{ form.username }}</td>
+				</tr>
+				<tr>
+				    <td>Имя: </td>
+				    <td>{{ form.first_name }}</td>
+				</tr>
+				<tr>
+				    <td>Фамилия: </td>
+				    <td>{{ form.last_name }}</td>
+				</tr>
+				<tr>
+				    <td>Город: </td>
+				    <td>{{ form.city }}</td>
+				</tr>
+				<tr>
+				    <td>Дата рождения: </td>
+				    <td>{{ form.date_of_birth }}</td>
+				</tr>
+				<tr>
+				    <td>Аватар: </td>
+				    <td>{{ form.photo }}</td>
+				</tr>
+				<tr>
+				    <td>Пароль: </td>
+				    <td>{{ form.password1 }}</td>
+				</tr>
+				<tr>
+				    <td>Повторите пароль: </td>
+				    <td>{{ form.password2 }}</td>
+				</tr>
+			</table>
+			<button type="submit" >Создать учетную запись</button>
+		</form>
+	</div>
