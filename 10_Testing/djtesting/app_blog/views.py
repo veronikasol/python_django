@@ -3,6 +3,8 @@ from django.http import HttpResponse
 from django.views import View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from .forms import PostForm, MultiFileForm
+from django.http import HttpResponseRedirect, HttpResponse
+
 
 
 
