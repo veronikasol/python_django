@@ -25,8 +25,4 @@ from django.contrib.auth.models import User, AnonymousUser
 	публикует запись и она отражается в списке публикаций и ее можно посмотреть детально
 	при прикреплении файлов, файлы тоже отображаются в детальном виде;
 	загружает файл с  файл с несколькими записями и они отображаются в списке,
-
-
-class DummyTest(TestCase):
-	def test_can_test(self):
-		self.assertTrue(5==4)
+"""
