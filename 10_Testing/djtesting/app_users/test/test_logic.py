@@ -1,15 +1,16 @@
-from django.test import TestCase
+from django.test import TestCase, RequestFactory
 from django.urls import reverse
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, AnonymousUser
 from ..models import Profile
 from ..forms import RegisterForm
+from ..views import profile_view, profile_edit_view
 
 # Тестирование приложения для учета пользователей
 """Пользователи могут 
 	незарегистрированные - зарегистрироваться на сайте
 	зарегистрированные:
 		залогиниться на сайте
-		смотреть свой профиль
+		смотреть свой профиль и профиль других
 		редактировать свой профиль
 """
 
@@ -38,8 +39,9 @@ class UserLoginLogicTest(TestCase):
 	проверяю только логику
 	Зарегистрированный пользователь может 
 		залогиниться по адресу login 
-		посмотреть свой профиль по адресу <int:user_id>
-		изменить свой профиль по адресу edit/<int:user_id>
+		посмотреть свой профиль по адресу <int:user_id> (проверяю в test_views)
+		изменить свой профиль по адресу edit/<int:user_id> (проверяю в test_views)
+		не может менять профили других пользователей
 	"""
 	def setUp(self):
 		self.credentials = {'username':'test_5', 'password':'secret_5A'}
@@ -83,3 +85,27 @@ class UserLoginLogicTest(TestCase):
 		self.assertNotEqual(another_profile.city,'not_default')
 		self.assertNotEqual(another_user.first_name,'test_first_name')
 		self.assertNotEqual(another_user.last_name,'test_last_name')
+
+class AnonymousUserActionsTest(TestCase):
+	"""Анонимный пользователь может просматривать профили пользователей, но не может их изменять"""
+	def setUp(self):
+		self.user = User.objects.create_user(username='test_10')
+		self.user.set_password('secret_10A')
+		self.user.save()
+		self.profile = Profile.objects.create(user=self.user, date_of_birth=None,
+				city='default', photo='anonymous.png')
+		self.factory = RequestFactory()
+
+	def test_anonymous_user_can_see_user_profile(self):
+		request = self.factory.get(f'/user/{self.user.pk}')
+		request.user = AnonymousUser()
+		response = profile_view(request,self.user.pk)
+		self.assertEqual(response.status_code, 200)
+		self.assertIn(f'{self.profile.user.username}', response.content.decode())
+
+	def test_anonymous_user_cannot_modify_user_profile(self):
+		request = self.factory.get(f'/user/edit/{self.user.pk}')
+		request.user = AnonymousUser()
+		response = profile_edit_view(request,self.user.pk)
+		self.assertEqual(response.status_code, 200)
+		self.assertIn('You cannot modify another people', response.content.decode())
