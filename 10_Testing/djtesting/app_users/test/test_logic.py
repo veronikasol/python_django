@@ -64,6 +64,22 @@ class UserLoginLogicTest(TestCase):
 			}, follow=True, secure=True)
 		self.assertIn('Пароль не подходит', response.content.decode())
 
-	def test_registered_user_can_view_profile(self):
-		response = self.client.post('/user/login/', self.credentials, follow=True, secure=True)
-		self.assertRedirects(response,'/')
+	def test_registered_user_cannot_edit_another_user_profile(self):
+		login = self.client.login(username='test_5', password='secret_5A')
+		self.assertTrue(login)
+		another_user = User.objects.create_user(username='test_8')
+		another_user.set_password('secret_8A')
+		another_user.save()
+		another_profile = Profile.objects.create(user=another_user, date_of_birth=None,
+				city='default', photo='anonymous.png')
+		response = self.client.post(f'/user/edit/{another_user.pk}', data={
+			'city':'not_default',
+			'first_name': 'test_first_name', 
+			'last_name': 'test_last_name',})
+		self.assertEqual(response.status_code, 200)
+		self.assertIn('You cannot modify another people',response.content.decode())
+		another_profile.refresh_from_db()
+		another_user.refresh_from_db()
+		self.assertNotEqual(another_profile.city,'not_default')
+		self.assertNotEqual(another_user.first_name,'test_first_name')
+		self.assertNotEqual(another_user.last_name,'test_last_name')

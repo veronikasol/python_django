@@ -59,6 +59,7 @@ class UserProfileViewTest(TestCase):
 		self.user.save()
 		self.profile = Profile.objects.create(user=self.user, date_of_birth=None,
 				city='default', photo='anonymous.png')
+		self.client.login(username='test_6', password='secret_6A')
 
 	def test_can_see_user_profile(self):
 		response = self.client.get(f'/user/{self.user.pk}')
@@ -67,6 +68,17 @@ class UserProfileViewTest(TestCase):
 		self.assertTemplateUsed(response, 'app_users/profile.html')
 		self.assertContains(response, 'Учетная запись пользователя')
 		self.assertIn(f'{self.profile.user.username}', response.content.decode())
+
+	def test_loginned_user_can_see_another_user_profile(self):
+		"""Создание другого пользователя(9) и получение его странички (не залогиненного(6))"""
+		another_user = User.objects.create_user(username='test_9')
+		another_user.set_password('secret_9A')
+		another_user.save()
+		another_profile = Profile.objects.create(user=another_user, date_of_birth=None,
+				city='default', photo='anonymous.png')
+		response = self.client.get(f'/user/{another_user.pk}')
+		self.assertEqual(response.status_code, 200)
+		self.assertIn(f'{another_profile.user.username}', response.content.decode())
 
 	def test_can_see_user_edit_profile(self):
 		response = self.client.get(f'/user/edit/{self.user.pk}' )

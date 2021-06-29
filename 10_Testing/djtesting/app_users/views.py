@@ -41,6 +41,8 @@ def profile_view(request, user_id):
 
 def profile_edit_view(request, user_id):
 	user = User.objects.get(pk=user_id)
+	if user != request.user:
+		return HttpResponse('You cannot modify another people profile!')
 	if Profile.objects.filter(user=user).exists():
 		user_profile = Profile.objects.get(user=user)
 	else:

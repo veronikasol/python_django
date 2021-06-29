@@ -46,6 +46,7 @@ class ProfileEditFormTest(TestCase):
 		self.user.save()
 		self.profile = Profile.objects.create(user=self.user, date_of_birth=None,
 				city='default', photo='anonymous.png')
+		self.client.login(username='test_7', password='secret_7A')
 
 	def test_proper_profile_edit_form(self):
 		response = self.client.get(f'/user/edit/{self.user.pk}')
