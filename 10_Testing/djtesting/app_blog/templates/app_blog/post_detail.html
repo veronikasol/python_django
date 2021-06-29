@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block title %}
+	{{ post.title }}
+{% endblock %}
+{% block content %}
+	<div id="post">
+		<h2>{{ post.title }}</h2>
+		<h3>Автор: <a href="{% url 'user_profile' post.user.id %}">{{ post.user.username }}</a></h3>
+		<h4>{{ post.content| linebreaks }}</h4>
+		{% if files %}
+			{% for img in files %}
+				<img src="{{ img.file.url }}" width="156" height="156">
+			{% endfor %}
+		{% endif %}
+{% endblock %}

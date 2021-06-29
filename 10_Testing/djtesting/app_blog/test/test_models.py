@@ -11,8 +11,6 @@ class PostModelTest(TestCase):
 		self.user = User.objects.create_user(username='test_11')
 		self.user.set_password('secret_11A')
 		self.user.save()
-		#self.profile = Profile.objects.create(user=self.user, date_of_birth=None,
-		#		city='default', photo='anonymous.png')
 		self.client.login(username='test_11', password='secret_11A')
 
 	def test_can_create_post(self):

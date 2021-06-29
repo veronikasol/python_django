@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> {% block title %} Живой журнал {% endblock %}</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<div class="navigation">
+		<nav>
+			<a href="{% url 'posts' %}">Живой журнал</a>
+			<ul>
+				{% if request.user.is_authenticated %}
+					<li>
+						Привет, 
+						<a href="{% url 'user_profile' request.user.id %}">{{request.user.username }}</a>
+					</li>
+					<li>
+						<a href="{% url 'post_form' %}">Добавить публикацию</a>
+					</li>
+					<li>
+						<a href="{% url 'upload_posts' %}">Добавить несколько публикаций одим csv файлом</a>
+					</li>
+					<li>
+						<a href="{% url 'profile_edit' request.user.id %}">
+						Редактировать профиль 
+						</a>
+					</li>
+					<li>
+						<a href="{% url 'logout' %}">Выйти</a>
+					</li>
+				{% else %}
+					<li>
+						<a href="{% url 'register' %}">Зарегистрироваться</a>
+					</li>
+					<li>
+						<a href="{% url 'login' %}">Войти</a>
+					</li>
+				{% endif %}
+
+			</ul>
+		</nav>
+	</div>
+	<div class="main_body">
+		<div class="main-content">
+			{% block content %} {% endblock %}
+		</div>
+	</div>
+</body>
+</html>
