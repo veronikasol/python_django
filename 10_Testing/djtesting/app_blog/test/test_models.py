@@ -15,7 +15,7 @@ class PostModelTest(TestCase):
 
 	def test_can_create_post(self):
 		post = Post.objects.create(
-			title='Test puplication', 
+			title='Test publication', 
 			content='Nothing more but test.',
 			user=self.user)
 		self.assertTrue(Post.objects.all().filter(id=1))

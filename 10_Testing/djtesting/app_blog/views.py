@@ -35,6 +35,8 @@ class PostCreateView(View, LoginRequiredMixin):
 		if post_form.is_valid():
 			cd = post_form.cleaned_data
 			new_post = post_form.save(commit=False)
+			if request.user.is_anonymous:
+				return HttpResponse('You are noa allowed to create posts')
 			new_post.user = request.user
 			new_post.save()
 			if file_form.is_valid():
