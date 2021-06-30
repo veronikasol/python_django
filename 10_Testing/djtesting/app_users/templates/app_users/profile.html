@@ -1,7 +1,8 @@
-<title>
+{% extends 'base.html' %}
+{% block title %}
 	Учетная запись пользователя {{ profile.user.username }}
-</title>
-<body>	
+{% endblock %}
+{% block content %}
 	<div id="user_profile">
 		<h3>Учетная запись пользователя {{ profile.user.username }}</h3>
 		<p>Логин: {{ profile.user.username }}</p>
@@ -11,4 +12,4 @@
 		<p> Дата рождения: {{ profile.date_of_birth }}</p>
 		<p> Аватар: <img src="{{ profile.photo.url }}" width="156" height="156"></p>
 	</div>
-</body>
+{% endblock %}

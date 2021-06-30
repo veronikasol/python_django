@@ -6,7 +6,7 @@
 	<h2>Добавьте файл с несколькими публикациями в форму ниже:</h2>
 	<form action="" method="post" enctype="multipart/form-data">
 		{% csrf_token %}
-		<input type="file" name="csv_file" />
+		{{ form.as_p }}
     	<button type="submit">Загрузить файл с несколькими публикациями</button>
 	</form>
 	

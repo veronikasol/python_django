@@ -47,16 +47,22 @@ class PostCreateView(View, LoginRequiredMixin):
 			return HttpResponseRedirect('/')
 		return render(request, 'app_blog/post_form.html', context={'post_form':post_form, 'file_form':file_form})
 
+
 @login_required
 def upload_posts_view(request):
-	if request.POST and request.FILES:
-		csvfile = request.FILES['csv_file']
-		file = csvfile.read().decode('utf-8')
-		csv_data = csv.reader(StringIO(file), delimiter=',')
-		user = request.user
-		for row in csv_data:
-			Post.objects.create(user=user, content=row[0])
-		return HttpResponseRedirect('/')
-		#return HttpResponse('OK')
-	context = {}
+	if request.method == 'POST':
+		file_form = MultiFileForm(request.POST, request.FILES)
+		if file_form.is_valid():
+			csvfile = request.FILES['file_field']
+			file = csvfile.read().decode('utf-8')
+			csv_data = csv.reader(StringIO(file), delimiter=',')
+			user = request.user
+			for row in csv_data:
+				Post.objects.create(user=user, content=row[0], created_at=row[1])
+			return HttpResponseRedirect('/')
+		else:
+			return HttpResponse('Please, files!')
+	else:
+		file_form = MultiFileForm()
+	context = {'form':file_form}
 	return render(request, 'app_blog/multiple_post.html', context=context)

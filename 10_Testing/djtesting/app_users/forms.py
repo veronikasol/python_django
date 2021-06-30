@@ -20,4 +20,4 @@ class ProfileEditForm(forms.ModelForm):
 
 	class Meta:
 		model = Profile
-		fields = ['city', 'date_of_birth']
+		fields = ['city', 'date_of_birth', 'photo']

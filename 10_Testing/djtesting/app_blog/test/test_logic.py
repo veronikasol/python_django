@@ -3,6 +3,10 @@ from django.urls import reverse
 from django.contrib.auth.models import User, AnonymousUser
 from ..views import posts_view, post_detail, PostCreateView
 from ..models import Post
+import os
+import csv
+from django.conf import settings
+from datetime import datetime
 
 """
 Сценарий.
@@ -79,3 +83,26 @@ class AnonymousBlogActionsTest(TestCase):
 		self.assertFalse(Post.objects.all())
 		self.assertEqual(response.status_code, 200)
 		self.assertIn('You are noa allowed to create posts', response.content.decode())
+
+class RegisteredUserBlogActionTest(TestCase):
+	
+	def setUp(self):
+		self.user = User.objects.create_user(username='test_16')
+		self.user.set_password('secret_16A')
+		self.user.save()
+		self.client.login(username='test_16', password='secret_16A')
+
+	def test_registered_user_can_download_csv_file(self):
+		os.mkdir(os.path.join(settings.BASE_DIR,'test_data'))
+		file = os.path.join(settings.BASE_DIR,'test_data','posts.csv')
+		with open(file, 'w', newline='') as out_file:
+			outwr = csv.writer(out_file)
+			outwr.writerow(['Nothing more but test 1.', datetime.now()])
+			outwr.writerow(['Nothing more but test 2.', datetime.now()])
+		with open(file) as fp:
+			response = self.client.post(reverse('upload_posts'), 
+				data={'file_field': fp}, follow=True)
+			self.assertIn(self.user.username, response.content.decode())
+			self.assertIn('Nothing more but test 2',response.content.decode())
+		os.remove(os.path.join(settings.BASE_DIR,'test_data', 'posts.csv'))
+		os.rmdir(os.path.join(settings.BASE_DIR,'test_data'))

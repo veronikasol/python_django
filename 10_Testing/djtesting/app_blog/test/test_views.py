@@ -2,7 +2,13 @@ from django.test import TestCase, RequestFactory
 from django.urls import reverse
 from django.contrib.auth.models import User, AnonymousUser
 from ..views import PostCreateView, post_detail, posts_view, upload_posts_view
-from ..models import Post
+from ..models import Post, File
+from django.core.files import File as Dj_File
+import os
+import csv
+from django.conf import settings
+from datetime import datetime
+from django.core.files.uploadedfile import SimpleUploadedFile
 
 class PostCreationViewTest(TestCase):
 	
@@ -53,3 +59,9 @@ class PostCreationViewTest(TestCase):
 		self.assertTemplateUsed(response, 'app_blog/post_detail.html')
 		self.assertIn('test_1', response.content.decode())
 		self.assertEqual(response.context['post'].user.username,self.user.username)
+
+	def test_view_to_upload_csv_file(self):
+		response = self.client.get(reverse('upload_posts'))
+		self.assertEqual(response.resolver_match.func, upload_posts_view)
+		self.assertTemplateUsed(response, 'app_blog/multiple_post.html')
+		self.assertIn('Загрузить файл с несколькими публикациями', response.content.decode())

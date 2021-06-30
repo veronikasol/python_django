@@ -20,12 +20,12 @@ class PostModelTest(TestCase):
 			user=self.user)
 		self.assertTrue(Post.objects.all().filter(id=1))
 		self.assertIn(Post.objects.first().user.username,'test_11')
-		self.assertIn(Post.objects.first().title,'Test puplication')
+		self.assertIn(Post.objects.first().title,'Test publication')
 		self.assertTrue(Post.objects.all().filter(id=1))
 
 	def test_can_attach_file_to_the_post(self):
 		post = Post.objects.create(
-			title='Test puplication with file', 
+			title='Test publication with file', 
 			content='Nothing more but test with file.',
 			user=self.user)
 		file = File.objects.create(

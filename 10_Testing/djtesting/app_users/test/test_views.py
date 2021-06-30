@@ -92,7 +92,7 @@ class UserProfileViewTest(TestCase):
 		response = self.client.post(f'/user/edit/{self.user.pk}', data={
 			'city':'not_default',
 			'first_name': 'test_first_name', 
-			'last_name': 'test_last_name',})
+			'last_name': 'test_last_name'})
 		self.assertEqual(response.status_code, 302)
 		self.assertRedirects(response,f'/user/{self.user.pk}')
 		self.profile.refresh_from_db()
@@ -100,3 +100,4 @@ class UserProfileViewTest(TestCase):
 		self.assertEqual(self.profile.city,'not_default')
 		self.assertEqual(self.user.first_name,'test_first_name')
 		self.assertEqual(self.user.last_name,'test_last_name')
+		self.assertEqual(self.profile.photo,'anonymous.png')
