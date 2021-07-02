@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2020-10-23 10:15+0000\n"
+"POT-Creation-Date: 2021-07-02 20:36+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,18 +41,175 @@ msgstr "товары"
 msgid "Hello there! Today is %(date)s %(time)s"
 msgstr "Привет! Сегодня %(date)s %(time)s"
 
-#: templates/greetings.html:6
-msgid "What time is it?"
-msgstr "Который час?"
-
-#: templates/translation_example.html:6
+#: templates/base.html:7 templates/translation_example.html:6
 msgid "Our translation page title."
 msgstr "Наша переведенная страница"
 
-#: templates/translation_example.html:9
+#: templates/base.html:24
+msgid "Go"
+msgstr "Перевести"
+
+#: templates/base.html:28 templates/translation_example.html:9
 msgid "Translated text."
 msgstr "Переведенный текст"
 
-#: templates/translation_example.html:23
+#: templates/base.html:42 templates/translation_example.html:23
 msgid "Welcome to our page"
 msgstr "Добро пожаловать на нашу страницу"
+
+#: templates/employment/vacancy.html:3 templates/employment/vacancy.html:5
+msgid "Vacancies"
+msgstr "Вакансии"
+
+#: templates/employment/vacancy.html:18
+msgid "No vacancies"
+msgstr "Нет вакансий"
+
+#: templates/goods/items_list.html:3 templates/goods/items_list.html:5
+msgid "Item list"
+msgstr "Список товаров"
+
+#: templates/goods/items_list.html:11
+msgid "Code"
+msgstr "Артикул"
+
+#: templates/goods/items_list.html:12
+msgid "Price"
+msgstr "Цена"
+
+#: templates/goods/items_list.html:25
+msgid "No Items."
+msgstr "Нет товаров."
+
+#: templates/goods/upload_price_file.html:3
+#: templates/goods/upload_price_file.html:5
+msgid "Upload file with prices"
+msgstr "Загрузить файл с ценами"
+
+#: templates/goods/upload_price_file.html:9
+msgid "Upload file"
+msgstr "Загрузить файл"
+
+#: templates/greetings.html:4
+msgid "What time is it?"
+msgstr "Который час?"
+
+#: templates/main.html:5
+msgid "Welcome, "
+msgstr "Добро пожаловать, "
+
+#: templates/main.html:7
+msgid "Date of birth: "
+msgstr "Дата рождения: "
+
+#: templates/main.html:8
+msgid "City: "
+msgstr "Город: "
+
+#: templates/main.html:10
+msgid "You are not authorized."
+msgstr "Вы не авторизованы."
+
+#: templates/main.html:11 templates/users/account.html:16
+#: templates/users/login.html:9
+msgid "Log in"
+msgstr "Войти"
+
+#: templates/main.html:13
+msgid "This is the main page"
+msgstr "Это главная страница"
+
+#: templates/media/file_form_upload.html:3
+#: templates/media/file_form_upload.html:5 templates/media/upload_file.html:3
+#: templates/media/upload_file.html:5
+msgid "File download"
+msgstr "Загрузить файл"
+
+#: templates/media/file_form_upload.html:9
+msgid "Download"
+msgstr "Загрузить"
+
+#: templates/media/resize_image.html:3 templates/media/resize_image.html:5
+#: templates/media/resize_image.html:9
+msgid "Resize image"
+msgstr "Уменьшить картинку"
+
+#: templates/media/upload_file.html:9
+msgid "download file"
+msgstr "Загрузить файл"
+
+#: templates/media/upload_files.html:3 templates/media/upload_files.html:5
+msgid "Files download"
+msgstr "Загрузка файла"
+
+#: templates/media/upload_files.html:9
+msgid "Download files"
+msgstr "Загрузить файлы"
+
+#: templates/users/account.html:3
+msgid "Profile"
+msgstr "Профиль"
+
+#: templates/users/account.html:6
+msgid "Welcome"
+msgstr "Добро пожаловать"
+
+#: templates/users/account.html:12
+msgid "Avatar is not downloaded"
+msgstr "Аватар не загружен"
+
+#: templates/users/account.html:15
+msgid "You are not authorized on this site."
+msgstr "Вы не авторизованы на нашем сайте."
+
+#: templates/users/edit_account.html:3
+msgid "Profile editing"
+msgstr "Редактирование профиля"
+
+#: templates/users/edit_account.html:8
+msgid "Renew"
+msgstr "Обновить"
+
+#: templates/users/login.html:3
+msgid "Page"
+msgstr "Страница"
+
+#: templates/users/login.html:5
+msgid "Log in page"
+msgstr "Страница входа"
+
+#: templates/users/logout.html:3
+msgid "Title"
+msgstr "Заголовок"
+
+#: templates/users/logout.html:5
+msgid "Log out"
+msgstr "Выйти"
+
+#: templates/users/logout.html:6
+msgid "You are successfully logged out!"
+msgstr "Вы успешно вышли!"
+
+#: templates/users/register.html:3 templates/users/register.html:5
+msgid "Registration"
+msgstr "Регистрация"
+
+#: templates/users/register.html:9
+msgid "Sign in"
+msgstr "Войти"
+
+#: templates/users/restore_password.html:3
+msgid "Password reset"
+msgstr "Восстановление пароля"
+
+#: templates/users/restore_password.html:8
+msgid "Reset password"
+msgstr "Восстановить пароль"
+
+#: templates/welcome.html:4
+msgid "Main page"
+msgstr "Главная страница"
+
+#: templates/welcome.html:7
+msgid "Welcome!"
+msgstr "Добро пожаловать!"
