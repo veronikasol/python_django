@@ -1,10 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Главная страница</title>
-</head>
-<body>
-<h1>Добро пожаловать!</h1>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+	{% trans 'Главная страница' %}
+{% endblock %}
+{% block content %}
+<h1>{% trans 'Добро пожаловать!' %}</h1>
+{% endblock %}

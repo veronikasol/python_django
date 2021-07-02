@@ -1,17 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Загрузка файла с ценами</title>
-</head>
-<body>
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans 'Upload file with prices' %}{% endblock %}
+{% block content %}
+	<h2>{% trans 'Upload file with prices' %}</h2>
+	<form method="post" enctype="multipart/form-data">
+	  {% csrf_token %}
+	  {{ form.as_p }}
+	  <button type="submit">{% trans 'Upload file' %}</button>
+	</form>
 
-<h2></h2>
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit">Загрузить файл</button>
-</form>
-
-</body>
-</html>
+{% endblock %}

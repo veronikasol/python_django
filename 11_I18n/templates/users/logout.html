@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-    <h2>Логаут</h2>
-    Вы успешно вышли из под вашей учетной записи!
-</body>
-</html>
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans 'Title' %}{% endblock %}
+{% block content %}
+    <h2>{% trans 'Log out' %}</h2>
+    {% trans 'You are successfully logged out!' %}
+{% endblock %}

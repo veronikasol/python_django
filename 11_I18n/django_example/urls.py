@@ -7,7 +7,7 @@ from django.urls import path
 from django_example.views import MainView
 
 urlpatterns = [
-    # path('', MainView.as_view(), name='main'),
+    path('', MainView.as_view(), name='main'),
     path('app_logic/', include('app_logic.urls')),
     path('app_goods/', include('app_goods.urls')),
     path('app_users/', include('app_users.urls')),

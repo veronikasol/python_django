@@ -1,20 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Main page</title>
-</head>
-<body>
-
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
 {% if request.user.is_authenticated %}
-    Добро пожаловать на сайт, {{ request.user.first_name }}
+    {% trans 'Welcome, '%} {{ request.user.first_name }}
 
-    <p>День рождения: {{ request.user.profile.date_of_birth }}</p>
-    <p>Город: {{ request.user.profile.city }}</p>
+    <p>{% trans 'Date of birth: ' %}{{ request.user.profile.date_of_birth }}</p>
+    <p>{% trans 'City: ' %}{{ request.user.profile.city }}</p>
 {% else %}
-    Вы неавторизованы на нашем сайте.
-    <a href="{% url 'login' %}">Войти</a>
+    {% trans 'You are not authorized.' %}
+    <a href="{% url 'login' %}">{% trans 'Log in' %}</a>
 {% endif %}
-<h2>Я - главная страница</h2>
-</body>
-</html>
+<h2>{% trans 'This is the main page' %}</h2>
+{% endblock %}
