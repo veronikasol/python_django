@@ -7,6 +7,7 @@ from django.shortcuts import render
 
 from app_goods.forms import UploadPriceFileForm
 from app_goods.models import Item
+from django.utils.translation import gettext_lazy as _
 
 
 def item_list(request, *args, **kwargs):
@@ -23,7 +24,7 @@ def update_prices(request):
             csv_reader = reader(price_str, delimiter=",", quotechar='"')
             for row in csv_reader:
                 Item.objects.filter(code=row[0]).update(price=Decimal(row[1]))
-            return HttpResponse(content='Цены были успешно обновлены', status=200)
+            return HttpResponse(content=_('Цены были успешно обновлены'), status=200)
     else:
         upload_file_form = UploadPriceFileForm()
 
