@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block content %}
+{% if request.user.is_authenticated %}
+    {% trans 'Welcome' %},  
+    {% if request.user.first_name%}
+    	{{ request.user.first_name }},
+    {% else %}
+    	{{ request.user.username }},
+    {% endif %}
+    {% trans 'to our sweet shop'%}!
+
+
+{% else %}
+    {% trans 'You are not authorized. Please, register or log in to be able to make purchases' %}.
+    <a href="{% url 'login' %}">{% trans 'Log in' %}</a>
+{% endif %}
+<h3>
+	<a href="{% url 'product_list' %}">{% trans 'View all goods' %}</a>
+</h3>
+{% endblock %}

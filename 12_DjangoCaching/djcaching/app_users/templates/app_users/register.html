@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+	{% trans 'User registration' %}
+{% endblock %}
+{% block content %}
+	<div>
+		<form method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<table>
+				<tr>
+				    <td>{% trans 'Username' %}:</td>
+				    <td>{{ form.username }}</td>
+				</tr>
+				<tr>
+				    <td>{% trans 'Name' %}: </td>
+				    <td>{{ form.first_name }}</td>
+				</tr>
+				<tr>
+				    <td>{% trans 'Surname' %}: </td>
+				    <td>{{ form.last_name }}</td>
+				</tr>
+				<tr>
+				    <td>{% trans 'City' %}: </td>
+				    <td>{{ form.city }}</td>
+				</tr>
+				<tr>
+				    <td>{% trans 'Date of birth' %}: </td>
+				    <td>{{ form.date_of_birth }}</td>
+				</tr>
+				<tr>
+				    <td>{% trans 'Avatar' %}: </td>
+				    <td>{{ form.photo }}</td>
+				</tr>
+				<tr>
+				    <td>{% trans 'Password' %}: </td>
+				    <td>{{ form.password1 }}</td>
+				</tr>
+				<tr>
+				    <td>{% trans 'Repeat password' %}: </td>
+				    <td>{{ form.password2 }}</td>
+				</tr>
+			</table>
+			<button type="submit" >{% trans "Create registration"%}</button>
+		</form>
+	</div>
+{% endblock %}

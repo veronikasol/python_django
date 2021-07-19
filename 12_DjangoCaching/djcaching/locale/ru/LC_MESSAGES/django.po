@@ -1,0 +1,273 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-07-19 15:59+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: app_logic/templates/base.html:5 app_logic/templates/base.html:27
+#: app_shop/templates/base.html:5 app_shop/templates/base.html:27
+msgid "Our sweet shop"
+msgstr "Наш магазин сладостей"
+
+#: app_logic/templates/base.html:22 app_shop/templates/base.html:22
+msgid "Go"
+msgstr "Выполнить"
+
+#: app_logic/templates/base.html:31 app_shop/templates/base.html:31
+msgid "Hello"
+msgstr "Привет"
+
+#: app_logic/templates/base.html:35 app_shop/templates/base.html:35
+msgid "Personal account"
+msgstr "Личный кабинет"
+
+#: app_logic/templates/base.html:38 app_shop/templates/base.html:38
+msgid "Log out"
+msgstr "Выйти"
+
+#: app_logic/templates/base.html:42 app_shop/templates/base.html:42
+msgid "Register"
+msgstr "Зарегистрироваться"
+
+#: app_logic/templates/base.html:45 app_logic/templates/main.html:16
+#: app_shop/templates/app_shop/product/list.html:19
+#: app_shop/templates/base.html:45
+#: app_users/templates/registration/login.html:4
+#: app_users/templates/registration/login.html:24
+msgid "Log in"
+msgstr "Войти"
+
+#: app_logic/templates/main.html:5
+#: app_shop/templates/app_shop/product/list.html:10
+msgid "Welcome"
+msgstr "Добро пожаловать"
+
+#: app_logic/templates/main.html:11
+#: app_shop/templates/app_shop/product/list.html:16
+msgid "to our sweet shop"
+msgstr "в наш магазин сладостей"
+
+#: app_logic/templates/main.html:15
+#: app_shop/templates/app_shop/product/list.html:18
+msgid ""
+"You are not authorized. Please, register or log in to be able to make "
+"purchases"
+msgstr ""
+"Вы просматриваете страницу как незарегистрированный пользователь. "
+"Пожалуйста, войдите или зарегистрируйтесь, чтобы иметь возможность делать "
+"покупки на сайте, просматривать предложения и акции"
+
+#: app_logic/templates/main.html:19
+msgid "View all goods"
+msgstr "Посмотреть все товары"
+
+#: app_shop/apps.py:7
+msgid "shop"
+msgstr "магазин"
+
+#: app_shop/models.py:6 app_shop/models.py:12
+msgid "category"
+msgstr "категория"
+
+#: app_shop/models.py:7
+msgid "category_ru"
+msgstr "категория"
+
+#: app_shop/models.py:13
+msgid "categories"
+msgstr "категории"
+
+#: app_shop/models.py:20 app_shop/models.py:30
+msgid "product"
+msgstr "товар"
+
+#: app_shop/models.py:21
+msgid "product_ru"
+msgstr "товар"
+
+#: app_shop/models.py:24
+msgid "image"
+msgstr "изображение"
+
+#: app_shop/models.py:25 app_shop/models.py:41
+msgid "price"
+msgstr "цена"
+
+#: app_shop/models.py:31
+msgid "products"
+msgstr "товар"
+
+#: app_shop/models.py:51
+msgid "offer"
+msgstr "предложение"
+
+#: app_shop/models.py:52
+msgid "ru_offer"
+msgstr "предложение"
+
+#: app_shop/models.py:62
+msgid "promo"
+msgstr "акция"
+
+#: app_shop/models.py:63
+msgid "ru_promo"
+msgstr "акция"
+
+#: app_shop/models.py:75
+msgid "balance"
+msgstr "баланс"
+
+#: app_shop/templates/app_shop/account/account.html:5
+#: app_shop/templates/app_shop/account/account.html:8
+msgid "Personal account for"
+msgstr "Личный кабинет пользователя"
+
+#: app_shop/templates/app_shop/account/account.html:11
+msgid "Your balanse is"
+msgstr "Ваш баланс"
+
+#: app_shop/templates/app_shop/account/account.html:16
+msgid "Your purchase history"
+msgstr "История покупок"
+
+#: app_shop/templates/app_shop/account/account.html:25
+msgid "quantity"
+msgstr "количество"
+
+#: app_shop/templates/app_shop/account/account.html:33
+msgid "Promo actions for you"
+msgstr "Акции для Вас"
+
+#: app_shop/templates/app_shop/account/account.html:45
+msgid "Special offers for you"
+msgstr "Специальные предложения для Вас"
+
+#: app_shop/templates/app_shop/product/detail.html:16
+#: app_shop/templates/app_shop/product/list.html:66
+msgid "Price"
+msgstr "Цена"
+
+#: app_shop/templates/app_shop/product/list.html:5
+#: app_shop/templates/app_shop/product/list.html:52
+msgid "Products"
+msgstr "Товары"
+
+#: app_shop/templates/app_shop/product/list.html:24
+msgid "Categories"
+msgstr "Категории"
+
+#: app_shop/templates/app_shop/product/list.html:28
+msgid "All"
+msgstr "Все"
+
+#: app_users/apps.py:7
+msgid "users"
+msgstr "пользователи"
+
+#: app_users/forms.py:8 app_users/forms.py:20
+#: app_users/templates/app_users/profile.html:10
+#: app_users/templates/app_users/register.html:16
+msgid "Name"
+msgstr "Имя"
+
+#: app_users/forms.py:9 app_users/forms.py:21
+#: app_users/templates/app_users/profile.html:11
+#: app_users/templates/app_users/register.html:20
+msgid "Surname"
+msgstr "Фамилия"
+
+#: app_users/forms.py:10 app_users/models.py:9
+#: app_users/templates/app_users/profile.html:12
+#: app_users/templates/app_users/register.html:24
+msgid "City"
+msgstr "Город"
+
+#: app_users/forms.py:12 app_users/models.py:8
+#: app_users/templates/app_users/profile.html:13
+#: app_users/templates/app_users/register.html:28
+msgid "Date of birth"
+msgstr "Дата рождения"
+
+#: app_users/models.py:10 app_users/templates/app_users/profile.html:14
+#: app_users/templates/app_users/register.html:32
+msgid "Avatar"
+msgstr "Аватар"
+
+#: app_users/models.py:17
+msgid "profiles"
+msgstr "Профили"
+
+#: app_users/models.py:18
+msgid "profile"
+msgstr "профиль"
+
+#: app_users/templates/app_users/profile.html:4
+#: app_users/templates/app_users/profile.html:8
+msgid "User profile for "
+msgstr "Профиль пользователя"
+
+#: app_users/templates/app_users/profile.html:9
+#: app_users/templates/app_users/register.html:12
+#: app_users/templates/registration/login.html:15
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: app_users/templates/app_users/profile_edit.html:4
+#: app_users/templates/app_users/profile_edit.html:8
+msgid "Edit user profile for "
+msgstr "Редактирование профиля "
+
+#: app_users/templates/app_users/profile_edit.html:13
+msgid "Edit profile"
+msgstr "профиль"
+
+#: app_users/templates/app_users/profile_edit.html:16
+msgid "Cancel editing"
+msgstr "Отменить редактирование"
+
+#: app_users/templates/app_users/register.html:4
+msgid "User registration"
+msgstr "Регистрация пользователя"
+
+#: app_users/templates/app_users/register.html:36
+#: app_users/templates/registration/login.html:19
+msgid "Password"
+msgstr "Пароль"
+
+#: app_users/templates/app_users/register.html:40
+msgid "Repeat password"
+msgstr "Повторите пароль"
+
+#: app_users/templates/app_users/register.html:44
+msgid "Create registration"
+msgstr "Создать учетную запись"
+
+#: app_users/templates/registration/login.html:7
+msgid "Enter your username and password"
+msgstr "Введите логин и пароль"
+
+#: app_users/templates/registration/login.html:9
+msgid "Password doesn't matsh or user doesn't exist. Please, try again"
+msgstr "Пароль не подходит или пользователь не зарегистрирован. Поробуйте еще"
+
+#~ msgid "Sale"
+#~ msgstr "Акции"
+
+#~ msgid "This is the main page"
+#~ msgstr "Это главная страница"

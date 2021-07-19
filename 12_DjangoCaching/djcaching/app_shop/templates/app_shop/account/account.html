@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load cache %}
+{% block title %}{% trans 'Personal account for' %} {{ user.username }}{% endblock %}
+{% block content %}
+	<h2>
+		{% trans 'Personal account for' %} {{ user.username }}
+	</h2>
+	<h3>
+		{% trans 'Your balanse is' %} {{ balance }}
+	</h3>
+	{% cache 500 user.username %}
+		{% block history %}
+			<div id="history">
+				<h4>{% trans 'Your purchase history' %}:</h4>
+				<ul>
+					{% for purchase in payment_history %}
+					<li>
+						{% if translate %}
+							{{ purchase.product.ru_name }}
+						{% else %}
+							{{ purchase.product.name }}
+						{% endif %}
+						, {% trans 'quantity'%}: {{ purchase.quantity }}
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+		{% endblock %}
+	{% endcache %}
+	<h4>
+		{% trans 'Promo actions for you' %}:
+	</h4>
+	{% for pr in promotions %}
+		<div class="promo">
+			{% if translate %}
+				{{ pr.ru_name }}
+			{% else %}
+				{{ pr.name }}
+			{% endif %}
+		</div>
+	{% endfor %}
+	<h4>
+		{% trans 'Special offers for you' %}:
+	</h4>
+	{% for of in offers %}
+		<div class="offer">
+			{% if translate %}
+				{{ of.ru_name }}
+			{% else %}
+				{{ of.name }}
+			{% endif %}
+		</div>
+	{% endfor %}
+{% endblock %}
