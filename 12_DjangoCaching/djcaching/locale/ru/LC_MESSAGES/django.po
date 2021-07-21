@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-19 15:59+0000\n"
+"POT-Creation-Date: 2021-07-21 12:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,63 +19,6 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
 "%100>=11 && n%100<=14)? 2 : 3);\n"
-
-#: app_logic/templates/base.html:5 app_logic/templates/base.html:27
-#: app_shop/templates/base.html:5 app_shop/templates/base.html:27
-msgid "Our sweet shop"
-msgstr "Наш магазин сладостей"
-
-#: app_logic/templates/base.html:22 app_shop/templates/base.html:22
-msgid "Go"
-msgstr "Выполнить"
-
-#: app_logic/templates/base.html:31 app_shop/templates/base.html:31
-msgid "Hello"
-msgstr "Привет"
-
-#: app_logic/templates/base.html:35 app_shop/templates/base.html:35
-msgid "Personal account"
-msgstr "Личный кабинет"
-
-#: app_logic/templates/base.html:38 app_shop/templates/base.html:38
-msgid "Log out"
-msgstr "Выйти"
-
-#: app_logic/templates/base.html:42 app_shop/templates/base.html:42
-msgid "Register"
-msgstr "Зарегистрироваться"
-
-#: app_logic/templates/base.html:45 app_logic/templates/main.html:16
-#: app_shop/templates/app_shop/product/list.html:19
-#: app_shop/templates/base.html:45
-#: app_users/templates/registration/login.html:4
-#: app_users/templates/registration/login.html:24
-msgid "Log in"
-msgstr "Войти"
-
-#: app_logic/templates/main.html:5
-#: app_shop/templates/app_shop/product/list.html:10
-msgid "Welcome"
-msgstr "Добро пожаловать"
-
-#: app_logic/templates/main.html:11
-#: app_shop/templates/app_shop/product/list.html:16
-msgid "to our sweet shop"
-msgstr "в наш магазин сладостей"
-
-#: app_logic/templates/main.html:15
-#: app_shop/templates/app_shop/product/list.html:18
-msgid ""
-"You are not authorized. Please, register or log in to be able to make "
-"purchases"
-msgstr ""
-"Вы просматриваете страницу как незарегистрированный пользователь. "
-"Пожалуйста, войдите или зарегистрируйтесь, чтобы иметь возможность делать "
-"покупки на сайте, просматривать предложения и акции"
-
-#: app_logic/templates/main.html:19
-msgid "View all goods"
-msgstr "Посмотреть все товары"
 
 #: app_shop/apps.py:7
 msgid "shop"
@@ -142,19 +85,19 @@ msgstr "Личный кабинет пользователя"
 msgid "Your balanse is"
 msgstr "Ваш баланс"
 
-#: app_shop/templates/app_shop/account/account.html:16
+#: app_shop/templates/app_shop/account/account.html:14
 msgid "Your purchase history"
 msgstr "История покупок"
 
-#: app_shop/templates/app_shop/account/account.html:25
-msgid "quantity"
-msgstr "количество"
+#: app_shop/templates/app_shop/account/account.html:15
+msgid "Total currency spend"
+msgstr "Общая сумма покупок"
 
-#: app_shop/templates/app_shop/account/account.html:33
+#: app_shop/templates/app_shop/account/account.html:37
 msgid "Promo actions for you"
 msgstr "Акции для Вас"
 
-#: app_shop/templates/app_shop/account/account.html:45
+#: app_shop/templates/app_shop/account/account.html:51
 msgid "Special offers for you"
 msgstr "Специальные предложения для Вас"
 
@@ -168,6 +111,33 @@ msgstr "Цена"
 msgid "Products"
 msgstr "Товары"
 
+#: app_shop/templates/app_shop/product/list.html:10
+#: app_shop/templates/main.html:5
+msgid "Welcome"
+msgstr "Добро пожаловать"
+
+#: app_shop/templates/app_shop/product/list.html:16
+#: app_shop/templates/main.html:11
+msgid "to our sweet shop"
+msgstr "в наш магазин сладостей"
+
+#: app_shop/templates/app_shop/product/list.html:18
+#: app_shop/templates/main.html:15
+msgid ""
+"You are not authorized. Please, register or log in to be able to make "
+"purchases"
+msgstr ""
+"Вы просматриваете страницу как незарегистрированный пользователь. "
+"Пожалуйста, войдите или зарегистрируйтесь, чтобы иметь возможность делать "
+"покупки на сайте, просматривать предложения и акции"
+
+#: app_shop/templates/app_shop/product/list.html:19
+#: app_shop/templates/base.html:45 app_shop/templates/main.html:16
+#: app_users/templates/registration/login.html:4
+#: app_users/templates/registration/login.html:24
+msgid "Log in"
+msgstr "Войти"
+
 #: app_shop/templates/app_shop/product/list.html:24
 msgid "Categories"
 msgstr "Категории"
@@ -175,6 +145,34 @@ msgstr "Категории"
 #: app_shop/templates/app_shop/product/list.html:28
 msgid "All"
 msgstr "Все"
+
+#: app_shop/templates/base.html:5 app_shop/templates/base.html:27
+msgid "Our sweet shop"
+msgstr "Наш магазин сладостей"
+
+#: app_shop/templates/base.html:22
+msgid "Go"
+msgstr "Выполнить"
+
+#: app_shop/templates/base.html:31
+msgid "Hello"
+msgstr "Привет"
+
+#: app_shop/templates/base.html:35
+msgid "Personal account"
+msgstr "Личный кабинет"
+
+#: app_shop/templates/base.html:38
+msgid "Log out"
+msgstr "Выйти"
+
+#: app_shop/templates/base.html:42
+msgid "Register"
+msgstr "Зарегистрироваться"
+
+#: app_shop/templates/main.html:19
+msgid "View all goods"
+msgstr "Посмотреть все товары"
 
 #: app_users/apps.py:7
 msgid "users"
@@ -265,6 +263,9 @@ msgstr "Введите логин и пароль"
 #: app_users/templates/registration/login.html:9
 msgid "Password doesn't matsh or user doesn't exist. Please, try again"
 msgstr "Пароль не подходит или пользователь не зарегистрирован. Поробуйте еще"
+
+#~ msgid "quantity"
+#~ msgstr "количество"
 
 #~ msgid "Sale"
 #~ msgstr "Акции"

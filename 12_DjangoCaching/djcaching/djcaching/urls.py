@@ -21,8 +21,7 @@ from django.contrib import admin
 
 urlpatterns = [
     path('app_users/', include('app_users.urls')),
-    path('app_shop/', include('app_shop.urls')),
-    path('', include('app_logic.urls')),
+    path('', include('app_shop.urls')),
     path('i18n', include('django.conf.urls.i18n')),
     path('admin/', admin.site.urls),
 ]

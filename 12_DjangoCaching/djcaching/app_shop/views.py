@@ -3,8 +3,15 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.models import User
 from .models import Category, Product, UserAccount, Promo, Offer, OrderItem
 from django.core.cache import cache
+from django.views import View
 
-def product_list(request, category_slug=None):
+
+class MainView(View):
+	def get(self, request, *args, **kwargs):
+		return render(request, 'main.html')
+
+
+def product_list(request, category_slug=None, *args, **kwargs,):
 	category = None
 	translate = False
 	language = request.LANGUAGE_CODE
@@ -44,14 +51,18 @@ def user_account(request, user_id, *args, **kwargs):
 	if language == 'ru':
 		translate = True
 	promotions = user_account.promo.all()
-	offers = user_account.offer.all().filter(ru_name__icontains='торт')
 	balance = user_account.balance
-	payment_history = OrderItem.objects.filter(user=user)
 	#кеширование
+	history_cache_key = f'hystory:{user.username}'
 	offers_cache_key = f'offers:{user.username}'
-	promo_cache_key = f'promo:{user.username}'
-	cache.get_or_set(promo_cache_key,promotions, 30*60)
-	cache.get_or_set(offers_cache_key,offers, 30*60)
+	offers = cache.get(offers_cache_key)
+	if not offers:
+		offers = user_account.offer.all().filter(ru_name__icontains='торт')
+		cache.set(offers_cache_key,offers, 10*60)
+	payment_history = cache.get(history_cache_key)
+	if not payment_history:
+		payment_history = get_history(user) # products, ru_products, total_sum
+		cache.set(history_cache_key,payment_history, 10*60)
 	context = {'promotions':promotions, 
 		'offers':offers, 
 		'balance':balance,
@@ -59,3 +70,13 @@ def user_account(request, user_id, *args, **kwargs):
 		'translate': translate
 		}
 	return render(request, 'app_shop/account/account.html', context=context)
+
+
+def get_history(user):
+	payment_history = OrderItem.objects.filter(user=user)
+	total_sum = 0
+	for prod in payment_history:
+		total_sum += prod.price * prod.quantity
+	products = list(set([payment_history[i].product.name for i in range(len(payment_history))]))
+	ru_products = list(set([payment_history[i].product.ru_name for i in range(len(payment_history))]))
+	return {'products':products, 'ru_products':ru_products, 'total_sum':total_sum}

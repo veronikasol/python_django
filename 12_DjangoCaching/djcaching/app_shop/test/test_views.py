@@ -14,7 +14,7 @@ class UserAccountViewTest(TestCase):
 
 	
 	def test_can_see_user_account_detail(self):
-		response = self.client.get(f'/app_shop/account/{self.user.id}')
+		response = self.client.get(f'/account/{self.user.id}')
 		self.assertEqual(response.status_code, 200)
 		self.assertEqual(response.resolver_match.func, user_account)
 		self.assertTemplateUsed(response, 'app_shop/account/account.html')
@@ -24,7 +24,7 @@ class UserAccountViewTest(TestCase):
 class ProductListViewTest(TestCase):
 
 	def test_can_see_product_list(self):
-		response = self.client.get('/app_shop/')
+		response = self.client.get('/products/')
 		self.assertEqual(response.status_code, 200)
 		self.assertEqual(response.resolver_match.func, product_list)
 		self.assertTemplateUsed(response, 'app_shop/product/list.html')
