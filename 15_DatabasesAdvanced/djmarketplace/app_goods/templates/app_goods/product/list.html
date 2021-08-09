@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}
+	{% if category %}{{ category.name }}{% else %}{% trans 'Products' %}{% endif %}
+{% endblock %}
+{% block content %}
+	<div id="head">
+		{% if request.user.is_authenticated %}
+		    {% trans 'Welcome' %},  
+			    {% if request.user.first_name%}
+					{{ request.user.first_name }},
+				{% else %}
+					{{ request.user.username }},
+				{% endif %}
+			{% trans 'to our sweet shop'%}!
+		{% else %}
+		    {% trans 'You are not authorized. Please, register or log in to be able to make purchases' %}.
+		    <a href="{% url 'login' %}">{% trans 'Log in' %}</a>
+		{% endif %}
+	</div>
+	<div id='sidebar_1'>
+		<h3>
+			{% trans 'Categories' %}
+		</h3>
+		<ul>
+			<li>
+				<a href="{% url 'product_list' %}">{% trans 'All' %}</a>
+			</li>
+			{% for c in categories %}
+			{% if translate %}
+				<li>
+					<a href="{% url 'product_list_by_category' c.slug %}">{{ c.ru_name }}</a>
+				</li>
+			{% else %}
+				<li>
+					<a href="{% url 'product_list_by_category' c.slug %}">{{ c.name }}</a>
+				</li>
+			{% endif %}
+			{% endfor %}
+		</ul>
+	</div>
+	<div id='sidebar_2'>
+		<h3>
+			{% trans 'Shops' %}
+		</h3>
+		<ul>
+			<li>
+				<a href="{% url 'product_list' %}">{% trans 'All' %}</a>
+			</li>
+			{% for s in shops %}
+				{% if translate %}
+				<li>
+					<a href="{% url 'product_list_by_shop' s.slug %}">{{ s.ru_name }}</a>
+				</li>
+				{% else %}
+					<li>
+						<a href="{% url 'product_list_by_shop' s.slug %}">{{ s.name }}</a>
+					</li>
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</div>
+	<div id="main">
+		<h1>
+			{% if category %}
+				{% if translate %}
+					{{ category.ru_name }}
+				{% else %}
+					{{ category.name }}
+				{% endif %}
+			{% else %}
+				{% trans 'Goods in stock' %}
+			{% endif %}
+		</h1>
+		{% for item  in content %}
+			{% with item.shop as shop %}
+				{% ifchanged %}
+				<h3>{% trans 'Goods in shop' %} {{ shop.name }}</h3>
+				{% endifchanged %}
+			{% endwith %}
+				{% with item.product as product %}
+					<div class="item">
+					<p>
+						<a href="{% url 'product_detail' item.pk %}">
+							<img src="{% if product.image %} {{ product.image.url }} {% else %}{% static 'img/no_photo.jpg' %}{% endif %}" width="156">
+						</a>
+					</p>
+						{% if translate %}
+							<a href="{% url 'product_detail' item.pk %}">{{product.ru_name }}</a>
+						{% else %}
+							<a href="{% url 'product_detail' item.pk %}">{{ product.name }}</a>
+						{% endif %}
+						<p>{% trans 'Price' %}: {{ item.price }} $</p>
+						<p>{% trans 'Available quantity' %}: {{ item.quantity }}</p>
+					</div>
+			{% endwith %}
+		{% endfor %}
+	</div>
+	<div class='best-sellers'>
+		<h3> {% trans 'Our best sellers' %}</h3>
+		{% for num in nums %}
+		{% if num.num_purchases %}
+		<p>{% trans 'Product' %}: 
+			{% if translate %}{{ num.ru_name }}{% else %}{{ num.name }}{% endif %}
+		(id: {{ num.id }}) {% trans 'was ordered' %} {{ num.num_purchases}} {% trans 'times' %} </p>
+		{% endif %}
+		{% endfor %}
+		<p>
+			Something else
+		</p>
+		{% for s in q %}
+		<p>{{ s }}</p>
+		{% endfor %}
+	</div>
+{% endblock %}

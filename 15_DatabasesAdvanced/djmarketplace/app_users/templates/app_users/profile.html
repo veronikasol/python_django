@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}
+	{% trans 'User profile for ' %} {{ profile.user.username }}
+{% endblock %}
+{% block content %}
+	<div id="user_profile">
+		<h3>{% trans 'User profile for ' %} {{ profile.user.username }}</h3>
+		<p>{% trans 'Username' %}: {{ profile.user.username }}</p>
+		<p> {% trans 'Name' %}: {{ profile.user.first_name }}</p>
+		<p> {% trans 'Surname' %}: {{ profile.user.last_name }}</p>
+		<p> {% trans 'City' %}: {{ profile.city }}</p>
+		<p> {% trans 'Date of birth' %}: {{ profile.date_of_birth }}</p>
+		<p> {% trans 'Avatar' %}: <img src="{{ profile.photo.url }}" width="156" height="156"></p>
+	</div>
+{% endblock %}

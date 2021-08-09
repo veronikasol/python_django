@@ -1,0 +1,504 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-08-07 20:45+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n"
+"%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: app_cart/apps.py:8
+msgid "cart"
+msgstr "корзина"
+
+#: app_cart/templates/app_cart/detail.html:4
+#: app_cart/templates/app_cart/detail.html:7
+msgid "Your shopping cart"
+msgstr "Ваша корзина"
+
+#: app_cart/templates/app_cart/detail.html:9
+msgid "Products in the cart"
+msgstr "Товары в корзине"
+
+#: app_cart/templates/app_cart/detail.html:12
+msgid "Image"
+msgstr "Фото"
+
+#: app_cart/templates/app_cart/detail.html:13
+#: app_goods/templates/app_goods/product/list.html:104
+msgid "Product"
+msgstr "Товар"
+
+#: app_cart/templates/app_cart/detail.html:14
+#: app_goods/templates/app_goods/product/detail.html:11
+#: app_goods/templates/app_goods/product/detail.html:15
+msgid "Shop"
+msgstr "Магазин"
+
+#: app_cart/templates/app_cart/detail.html:15
+msgid "Quantity"
+msgstr "Количество"
+
+#: app_cart/templates/app_cart/detail.html:16
+#: app_cart/templates/app_cart/detail.html:40
+msgid "Remove"
+msgstr "Удалить"
+
+#: app_cart/templates/app_cart/detail.html:17
+msgid "Unit"
+msgstr "Количество единиц"
+
+#: app_cart/templates/app_cart/detail.html:18
+#: app_goods/templates/app_goods/product/detail.html:18
+#: app_goods/templates/app_goods/product/list.html:94
+msgid "Price"
+msgstr "Цена"
+
+#: app_cart/templates/app_cart/detail.html:37
+msgid "Update"
+msgstr "Обновить"
+
+#: app_cart/templates/app_cart/detail.html:47
+#: app_goods/templates/app_goods/order/create.html:21
+msgid "Total"
+msgstr "Итого"
+
+#: app_cart/templates/app_cart/detail.html:55
+msgid "Continue shopping"
+msgstr "Продолжить покупки"
+
+#: app_cart/templates/app_cart/detail.html:56
+#: app_goods/templates/app_goods/order/create.html:4
+#: app_goods/templates/app_goods/order/create.html:7
+msgid "Checkout"
+msgstr "Оформить заказ"
+
+#: app_goods/apps.py:7
+msgid "goods"
+msgstr "товары"
+
+#: app_goods/models.py:7
+msgid "shop name"
+msgstr "магазин"
+
+#: app_goods/models.py:8
+msgid "ru_shop name"
+msgstr "магазин"
+
+#: app_goods/models.py:13
+msgid "shop"
+msgstr "магазин"
+
+#: app_goods/models.py:14
+msgid "shops"
+msgstr "магазины"
+
+#: app_goods/models.py:22 app_goods/models.py:28
+msgid "category"
+msgstr "категория"
+
+#: app_goods/models.py:23
+msgid "category_ru"
+msgstr "категория"
+
+#: app_goods/models.py:29
+msgid "categories"
+msgstr "категории"
+
+#: app_goods/models.py:37 app_goods/models.py:47
+msgid "product"
+msgstr "товар"
+
+#: app_goods/models.py:38
+msgid "product_ru"
+msgstr "товар"
+
+#: app_goods/models.py:41
+msgid "image"
+msgstr "фото"
+
+#: app_goods/models.py:48
+msgid "products"
+msgstr "товары"
+
+#: app_goods/models.py:59 app_goods/models.py:83
+msgid "price"
+msgstr "цена"
+
+#: app_goods/models.py:93
+msgid "offer"
+msgstr "предложение"
+
+#: app_goods/models.py:94
+msgid "ru_offer"
+msgstr "предложение"
+
+#: app_goods/models.py:104
+msgid "promo"
+msgstr "акция"
+
+#: app_goods/models.py:105
+msgid "ru_promo"
+msgstr "акция"
+
+#: app_goods/models.py:117
+msgid "I"
+msgstr "Н"
+
+#: app_goods/models.py:117 app_goods/models.py:125
+msgid "Initial"
+msgstr "Начальный"
+
+#: app_goods/models.py:118
+msgid "S"
+msgstr "С"
+
+#: app_goods/models.py:118
+msgid "Silver"
+msgstr "Серебряный"
+
+#: app_goods/models.py:119
+msgid "P"
+msgstr "П"
+
+#: app_goods/models.py:119
+msgid "Platinum"
+msgstr "Платиновый"
+
+#: app_goods/models.py:120
+msgid "G"
+msgstr "З"
+
+#: app_goods/models.py:120
+msgid "Gold"
+msgstr "Золотой"
+
+#: app_goods/models.py:124
+msgid "balance"
+msgstr "баланс"
+
+#: app_goods/templates/app_goods/account/account.html:5
+#: app_goods/templates/app_goods/account/account.html:8
+msgid "Personal account for"
+msgstr "Личный кабинет"
+
+#: app_goods/templates/app_goods/account/account.html:11
+msgid "Your balanse is"
+msgstr "Ваш баланс"
+
+#: app_goods/templates/app_goods/account/account.html:14
+msgid "Your current status is"
+msgstr "Ваш текущий статус"
+
+#: app_goods/templates/app_goods/account/account.html:17
+msgid "Pluss up the balance"
+msgstr "Пополнить баланс"
+
+#: app_goods/templates/app_goods/account/account.html:20
+msgid "Your purchase history"
+msgstr "История покупок"
+
+#: app_goods/templates/app_goods/account/account.html:21
+msgid "Total currency spend"
+msgstr "Общая сумма покупок"
+
+#: app_goods/templates/app_goods/account/account.html:37
+msgid "Your orders"
+msgstr "Ваши заказы"
+
+#: app_goods/templates/app_goods/account/account.html:49
+msgid "Promo actions for you"
+msgstr "Промо акции"
+
+#: app_goods/templates/app_goods/account/account.html:63
+msgid "Special offers for you"
+msgstr "Специальные предложения"
+
+#: app_goods/templates/app_goods/account/balance_increase.html:4
+#: app_goods/templates/app_goods/account/balance_increase.html:7
+msgid "Increase your balance"
+msgstr "Пополнить баланс"
+
+#: app_goods/templates/app_goods/account/balance_increase.html:11
+msgid "Please, enter summ you want to increase your balance"
+msgstr "Пожалуйста, выберите сумму на которую хотите пополнить ваш баланс"
+
+#: app_goods/templates/app_goods/account/balance_increase.html:16
+msgid "Pluss up"
+msgstr "Пополнить"
+
+#: app_goods/templates/app_goods/order/create.html:11
+#: app_goods/templates/app_goods/payments/process.html:11
+msgid "Your order"
+msgstr "Ваш заказ"
+
+#: app_goods/templates/app_goods/order/create.html:24
+msgid "Place order"
+msgstr "Разместить заказ"
+
+#: app_goods/templates/app_goods/order/created.html:4
+msgid "Thank you for your order"
+msgstr "Спасибо за заказ"
+
+#: app_goods/templates/app_goods/order/created.html:6
+msgid "Thank you"
+msgstr "Спасибо"
+
+#: app_goods/templates/app_goods/order/created.html:8
+msgid "You are succesfully placed your order. Your order number is"
+msgstr "Вы успешно разместили заказ. Номер заказа "
+
+#: app_goods/templates/app_goods/payments/canceled.html:4
+#: app_goods/templates/app_goods/payments/canceled.html:6
+msgid "Error in payment"
+msgstr "Ошибка при оплате"
+
+#: app_goods/templates/app_goods/payments/canceled.html:8
+msgid "There was a problem in your payment"
+msgstr "Во время оплаты возникла ошибка"
+
+#: app_goods/templates/app_goods/payments/done.html:4
+#: app_goods/templates/app_goods/payments/done.html:6
+msgid "Succesfull payment"
+msgstr "Оплата прошла успешно"
+
+#: app_goods/templates/app_goods/payments/done.html:8
+msgid "You are succesfully payed for your order"
+msgstr "Вы успешно оплатили заказ"
+
+#: app_goods/templates/app_goods/payments/process.html:4
+#: app_goods/templates/app_goods/payments/process.html:7
+msgid "Pay for the order"
+msgstr "Оплатить заказ"
+
+#: app_goods/templates/app_goods/payments/process.html:18
+msgid "Pay"
+msgstr "Оплатить"
+
+#: app_goods/templates/app_goods/product/detail.html:10
+#: app_goods/templates/app_goods/product/detail.html:14
+msgid "Buy"
+msgstr "Купить"
+
+#: app_goods/templates/app_goods/product/detail.html:12
+#: app_goods/templates/app_goods/product/detail.html:16
+msgid "Category"
+msgstr "Категория"
+
+#: app_goods/templates/app_goods/product/detail.html:19
+msgid "Available"
+msgstr "В наличии"
+
+#: app_goods/templates/app_goods/product/detail.html:23
+msgid "Add to cart"
+msgstr "Добавить в корзину"
+
+#: app_goods/templates/app_goods/product/list.html:5
+msgid "Products"
+msgstr "Товары"
+
+#: app_goods/templates/app_goods/product/list.html:10
+#: app_goods/templates/main.html:5
+msgid "Welcome"
+msgstr "Добро пожаловать"
+
+#: app_goods/templates/app_goods/product/list.html:16
+#: app_goods/templates/main.html:11
+msgid "to our sweet shop"
+msgstr "в наш магазин"
+
+#: app_goods/templates/app_goods/product/list.html:18
+#: app_goods/templates/main.html:15
+msgid ""
+"You are not authorized. Please, register or log in to be able to make "
+"purchases"
+msgstr ""
+"Вы не авторизованы. Пожалуйста, зарегистрируйтесь или войдите чтобы "
+"совершать покупки"
+
+#: app_goods/templates/app_goods/product/list.html:19
+#: app_goods/templates/base.html:45 app_goods/templates/main.html:16
+#: app_users/templates/registration/login.html:4
+#: app_users/templates/registration/login.html:24
+msgid "Log in"
+msgstr "Войти"
+
+#: app_goods/templates/app_goods/product/list.html:24
+msgid "Categories"
+msgstr "Категории"
+
+#: app_goods/templates/app_goods/product/list.html:28
+#: app_goods/templates/app_goods/product/list.html:49
+msgid "All"
+msgstr "Все"
+
+#: app_goods/templates/app_goods/product/list.html:45
+msgid "Shops"
+msgstr "Магазины"
+
+#: app_goods/templates/app_goods/product/list.html:73
+msgid "Goods in stock"
+msgstr "Товары в наличии"
+
+#: app_goods/templates/app_goods/product/list.html:79
+msgid "Goods in shop"
+msgstr "Товары в магазине"
+
+#: app_goods/templates/app_goods/product/list.html:95
+msgid "Available quantity"
+msgstr "Доступное количество"
+
+#: app_goods/templates/app_goods/product/list.html:101
+msgid "Our best sellers"
+msgstr "Самые популярные товары"
+
+#: app_goods/templates/app_goods/product/list.html:106
+msgid "was ordered"
+msgstr "был заказан"
+
+#: app_goods/templates/app_goods/product/list.html:106
+msgid "times"
+msgstr "раз"
+
+#: app_goods/templates/base.html:5 app_goods/templates/base.html:27
+msgid "Our sweet shop"
+msgstr "Наш магазин сладостей"
+
+#: app_goods/templates/base.html:22
+msgid "Go"
+msgstr "Начать"
+
+#: app_goods/templates/base.html:31
+msgid "Hello"
+msgstr "Привет"
+
+#: app_goods/templates/base.html:35
+msgid "Personal account"
+msgstr "Личный кабинет"
+
+#: app_goods/templates/base.html:38
+msgid "Log out"
+msgstr "Выйти"
+
+#: app_goods/templates/base.html:42
+msgid "Register"
+msgstr "Зарегистрироваться"
+
+#: app_goods/templates/base.html:55
+msgid "Your cart"
+msgstr "Ваша корзина"
+
+#: app_goods/templates/base.html:56
+msgid "item"
+msgstr "товаров"
+
+#: app_goods/templates/base.html:58
+msgid "Your cart is empty"
+msgstr "Ваша корзина пуста"
+
+#: app_goods/templates/main.html:19
+msgid "View all goods"
+msgstr "Посмотреть все товары"
+
+#: app_users/apps.py:7
+msgid "users"
+msgstr "пользователи"
+
+#: app_users/forms.py:8 app_users/forms.py:20
+#: app_users/templates/app_users/profile.html:10
+#: app_users/templates/app_users/register.html:16
+msgid "Name"
+msgstr "Имя"
+
+#: app_users/forms.py:9 app_users/forms.py:21
+#: app_users/templates/app_users/profile.html:11
+#: app_users/templates/app_users/register.html:20
+msgid "Surname"
+msgstr "Фамилия"
+
+#: app_users/forms.py:10 app_users/models.py:9
+#: app_users/templates/app_users/profile.html:12
+#: app_users/templates/app_users/register.html:24
+msgid "City"
+msgstr "Город"
+
+#: app_users/forms.py:12 app_users/models.py:8
+#: app_users/templates/app_users/profile.html:13
+#: app_users/templates/app_users/register.html:28
+msgid "Date of birth"
+msgstr "Дата рождения"
+
+#: app_users/models.py:10 app_users/templates/app_users/profile.html:14
+#: app_users/templates/app_users/register.html:32
+msgid "Avatar"
+msgstr "Аватар"
+
+#: app_users/models.py:17
+msgid "profiles"
+msgstr "профили"
+
+#: app_users/models.py:18
+msgid "profile"
+msgstr "профиль"
+
+#: app_users/templates/app_users/profile.html:4
+#: app_users/templates/app_users/profile.html:8
+msgid "User profile for "
+msgstr "Профиль пользователя "
+
+#: app_users/templates/app_users/profile.html:9
+#: app_users/templates/app_users/register.html:12
+#: app_users/templates/registration/login.html:15
+msgid "Username"
+msgstr "Имя пользователя"
+
+#: app_users/templates/app_users/profile_edit.html:4
+#: app_users/templates/app_users/profile_edit.html:8
+msgid "Edit user profile for "
+msgstr "Редактировать профиль"
+
+#: app_users/templates/app_users/profile_edit.html:13
+msgid "Edit profile"
+msgstr "Редактировать профиль"
+
+#: app_users/templates/app_users/profile_edit.html:16
+msgid "Cancel editing"
+msgstr "Отменить редактирование"
+
+#: app_users/templates/app_users/register.html:4
+msgid "User registration"
+msgstr "Регистрация пользователя"
+
+#: app_users/templates/app_users/register.html:36
+#: app_users/templates/registration/login.html:19
+msgid "Password"
+msgstr "Пароль"
+
+#: app_users/templates/app_users/register.html:40
+msgid "Repeat password"
+msgstr "Повторите пароль"
+
+#: app_users/templates/app_users/register.html:44
+msgid "Create registration"
+msgstr "Зарегистрироваться"
+
+#: app_users/templates/registration/login.html:7
+msgid "Enter your username and password"
+msgstr "Введите имя пользователя и пароль"
+
+#: app_users/templates/registration/login.html:9
+msgid "Password doesn't matsh or user doesn't exist. Please, try again"
+msgstr "Пароль не подходит, или пользователь не существует. Попробуйте еще"

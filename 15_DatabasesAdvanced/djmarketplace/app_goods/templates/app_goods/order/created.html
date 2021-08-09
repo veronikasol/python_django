@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans 'Thank you for your order'%}{% endblock %}
+{% block content %}
+	<h1>{% trans 'Thank you' %}</h1>
+	<div class="row">
+		<p>{% trans 'You are succesfully placed your order. Your order number is' %} {{ order.id }}</p>
+	</div>
+{% endblock %}

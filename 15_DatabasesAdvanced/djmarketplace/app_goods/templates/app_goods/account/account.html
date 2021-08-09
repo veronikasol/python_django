@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% load cache %}
+{% block title %}{% trans 'Personal account for' %} {{ user.username }}{% endblock %}
+{% block content %}
+	<h2>
+		{% trans 'Personal account for' %} {{ user.username }}
+	</h2>
+	<h3>
+		{% trans 'Your balanse is' %} {{ balance }}
+	</h3>
+	<h3>
+		{% trans 'Your current status is' %} {{ status }}
+	</h3>
+	<h3>
+		<a href="{% url 'balance_increase' %}">{% trans 'Pluss up the balance' %}</a>
+	</h3>
+	<div id="history">
+		<h4>{% trans 'Your purchase history' %}.</h4>
+		<p>{% trans 'Total currency spend' %}: $ {{ payment_history.total_sum }}</hp>
+		<ul>
+			{% if translate %}
+				{% for product in payment_history.ru_products %}
+						<li>
+							{{ product }}
+						</li>
+				{% endfor %}
+			{% else %}
+				{% for product in payment_history.products %}
+					<li>
+						{{ product }}
+					</li>
+				{% endfor %}
+			{% endif %}
+			</ul>
+		<h4>{% trans 'Your orders' %}</h4>
+		<ul>
+		{% for order in payment_history.orders %}
+		<li>
+			{{ order }}
+		</li>
+		{% endfor %}
+		</ul>
+	</div>
+	{% cache 500 promos %}
+		{% block promo %}
+			<h4>
+				{% trans 'Promo actions for you' %}:
+			</h4>
+			{% for pr in promotions %}
+				<div class="promo">
+					{% if translate %}
+						{{ pr.ru_name }}
+					{% else %}
+						{{ pr.name }}
+					{% endif %}
+				</div>
+			{% endfor %}
+		{% endblock %}
+	{% endcache %}
+	<h4>
+		{% trans 'Special offers for you' %}:
+	</h4>
+	{% for of in offers %}
+		<div class="offer">
+			{% if translate %}
+				{{ of.ru_name }}
+			{% else %}
+				{{ of.name }}
+			{% endif %}
+		</div>
+	{% endfor %}
+{% endblock %}

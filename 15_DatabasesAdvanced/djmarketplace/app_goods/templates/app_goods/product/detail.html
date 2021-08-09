@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}{{ item.product.name }} in {{ item.shop.name }}{% endblock %}
+{% block content %}
+
+<div>
+	<img src="{% if product.image %} {{ product.image.url }} {% else %}{% static 'img/no_photo.jpg' %}{% endif %}" width="156">
+	{% if translate %}
+		<h1>{% trans 'Buy'%} {{ product.ru_name }}</h1>
+		<h3>{% trans 'Shop'%}: {{ item.shop.ru_name }}</h3>
+		<h2>{% trans 'Category'%}:{{ product.category.ru_name }}</a></h2>
+	{% else %}
+		<h1>{% trans 'Buy'%} {{ product.name }}</h1>
+		<h3>{% trans 'Shop'%}: {{ item.shop.name }}</h3>
+		<h2>{% trans 'Category'%}:{{ product.category.name }}</a></h2>
+	{% endif %}
+	<p>{% trans 'Price'%}:{{ item.price }}</p>
+	<p>{% trans 'Available'%}: {{ item.quantity }}</p>
+	<form action="{% url 'cart_add' item.product.pk item.shop.pk %}" method="post">
+		{% csrf_token %}
+		{{ cart_product_form }}
+		<input type="submit" value="{% trans 'Add to cart' %}">
+	</form>
+	{{ product.description | linebreaks }}
+</div>
+{% endblock %}

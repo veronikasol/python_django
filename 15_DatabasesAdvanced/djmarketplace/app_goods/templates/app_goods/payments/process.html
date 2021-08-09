@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans 'Pay for the order' %}{% endblock %}
+{% block content %}
+	<h1>
+		{% trans 'Pay for the order' %}
+	</h1>
+	<div class="order-info">
+		<h3>
+		{% trans 'Your order' %}
+		</h3>
+		<h4>
+			Total ammount: {{ amount }}
+		</h4>
+		<form action="." method="post">
+			{% csrf_token %}
+			<p><input type="submit" value="{% trans 'Pay' %}"></p>
+		</form>
+	</div>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans 'Your shopping cart'%}{% endblock %}
+{% block content %}
+<div class="row">
+	<h1>{% trans 'Your shopping cart' %}</h1>
+	<table class="cart">
+		<caption>{% trans 'Products in the cart' %}</caption>
+		<thead>
+			<tr>
+				<th scope="col">{% trans 'Image' %}</th>
+				<th scope="col" align="center">{% trans 'Product' %}</th>
+				<th scope="col" align="center">{% trans 'Shop' %}</th>
+				<th scope="col" align="center">{% trans 'Quantity' %}</th>
+				<th scope="col" align="center">{% trans 'Remove' %}</th>
+				<th scope="col" align="center">{% trans 'Unit' %}</th>
+				<th scope="col" align="center">{% trans 'Price' %}</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in cart %}
+				{% with product=item.product %}
+					<tr>
+						<td>
+							<a href="">
+								<img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_photo.jpg' %}{% endif %}" width="156">
+							</a>
+						</td>
+						<td>{% if translate %}{{ product.ru_name }}{% else %}{{ product.name }}{% endif %}</td>
+						<td>{{ item.shop.name }}</td>
+						<td>
+							<form action="{% url 'cart_add' product.pk item.shop.pk %}" method="post">
+								{% csrf_token %}
+								{{ item.update_quantity_form.quantity }}
+								{{ item.update_quantity_form.update }}
+								<input type="submit" value="{% trans 'Update' %}">
+							</form>
+						</td>
+						<td><a href="{% url 'cart_remove' product.pk item.shop.pk %}">{% trans 'Remove' %}</a></td>
+						<td class="num">${{ item.price }}</td>
+						<td class="num">${{ item.total_price }}</td>
+					</tr>
+				{% endwith %}
+			{% endfor %}
+			<tr class="total">
+				<td>{% trans 'Total' %}</td>
+				<td colspan="5"></td>
+				<td class="num">${{ cart.get_total_price }}</td>			
+			</tr>
+		</tbody>
+	</table>
+</div>
+<p>
+	<a href="{% url 'product_list' %}" class="button">{% trans 'Continue shopping' %}</a>
+	<a href="{% url 'order_create' %}" class="button">{% trans 'Checkout' %}</a>
+</p>
+{% endblock %}

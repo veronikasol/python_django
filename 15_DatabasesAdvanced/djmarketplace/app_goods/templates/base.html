@@ -1,0 +1,68 @@
+{% load i18n %}  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title> {% block title %} {% trans "Our sweet shop" %} {% endblock %}</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<header>
+		<form action="{% url 'set_language' %}" method="post">{% csrf_token %}
+		    <input name="next" type="hidden" value="{{ redirect_to }}">
+		    <select name="language">
+		        {% get_current_language as LANGUAGE_CODE %}
+		        {% get_available_languages as LANGUAGES %}
+		        {% get_language_info_list for LANGUAGES as languages %}
+		        {% for language in languages %}
+		            <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+		                {{ language.name_local }} ({{ language.code }})
+		            </option>
+		        {% endfor %}
+		    </select>
+		    <input type="submit" value="{% trans 'Go' %}">
+		</form>
+	</header>
+	<div class="navigation">
+		<nav>
+			<a href="{% url 'product_list' %}">{% trans "Our sweet shop" %}</a>
+			<ul>
+				{% if request.user.is_authenticated %}
+					<li>
+						{% trans "Hello" %}, 
+						<a href="{% url 'user_profile' request.user.id %}">{{request.user.username }}</a>
+					</li>
+					<li>
+						<a href="{% url 'user_account' %}">{% trans "Personal account" %}</a>
+					</li>
+					<li>
+						<a href="{% url 'logout' %}">{% trans "Log out" %}</a>
+					</li>
+				{% else %}
+					<li>
+						<a href="{% url 'register' %}">{% trans "Register" %}</a>
+					</li>
+					<li>
+						<a href="{% url 'login' %}">{% trans "Log in" %}</a>
+					</li>
+				{% endif %}
+
+			</ul>
+		</nav>
+	</div>
+	<div class="cart">
+		{% with total_items=cart|length %}
+			{% if cart|length > 0 %}
+				{% trans 'Your cart' %}:
+				<a href="{% url 'cart_detail' %}">{{ total_items }} {% trans 'item' %}, ${{ cart.get_total_price }}</a>
+			{% else %}
+				{% trans 'Your cart is empty' %}
+			{% endif %}
+		{% endwith %}
+	</div>
+	<div class="main_body">
+		<div class="main-content">
+			{% block content %} {% endblock %}
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}{% trans 'Error in payment' %}{% endblock %}
+{% block content %}
+	<h1>{% trans 'Error in payment' %}</h1>
+	<div class="row">
+		<p>{% trans 'There was a problem in your payment' %}!</p>
+	</div>
+{% endblock %}
