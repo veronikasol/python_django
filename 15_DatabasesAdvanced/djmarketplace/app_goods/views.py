@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
-from django.http import HttpResponseRedirect, HttpResponse
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import Category, Product, UserAccount, Promo, Offer, OrderItem
 from .models import Shop, Content, Order
@@ -12,6 +12,7 @@ from app_cart.app_cart import Cart
 from django.db import transaction
 from decimal import Decimal
 from django.db.models import Count
+from .utils import enough_money, get_history, get_status, is_translate
 
 
 class MainView(View):
@@ -22,10 +23,7 @@ class MainView(View):
 def product_list(request, category_slug=None, shop_slug=None, *args, **kwargs,):
 	category = None
 	shop = None
-	translate = False
-	language = request.LANGUAGE_CODE
-	if language == 'ru':
-		translate = True
+	translate = is_translate(request)
 	shops = Shop.objects.all()
 	categories = Category.objects.all()
 	content = Content.objects.order_by('shop')
@@ -50,10 +48,7 @@ def product_detail(request, pk, *args, **kwargs):
 	item = get_object_or_404(Content, id=pk, available=True)
 	product = get_object_or_404(Product, id=item.product.id)
 	cart_product_form = CartAddProductForm()
-	translate = False
-	language = request.LANGUAGE_CODE
-	if language == 'ru':
-		translate = True
+	translate = is_translate(request)
 	context = {
 		'item':item,
 		'product':product,
@@ -62,38 +57,28 @@ def product_detail(request, pk, *args, **kwargs):
 		}
 	return render(request, 'app_goods/product/detail.html', context=context)
 
+@login_required
 def user_account(request, *args, **kwargs):
 	user = request.user
-	translate = False
-	if user != request.user:
-		return HttpResponse('You cannot view another people account!')
 	if UserAccount.objects.filter(user=user).exists():
 		user_account = UserAccount.objects.get(user=user)
 	else:
 		user_account = UserAccount.objects.create(user=user)
-		translate = False
-	language = request.LANGUAGE_CODE
-	if language == 'ru':
-		translate = True
-	promotions = user_account.promo.all()
+	translate = is_translate(request)
 	balance = user_account.balance
-	#кеширование
+	#кеширование истории
 	history_cache_key = f'hystory:{user.username}'
-	offers_cache_key = f'offers:{user.username}'
-	offers = cache.get(offers_cache_key)
-	if not offers:
-		offers = user_account.offer.all().filter(ru_name__icontains='торт')
-		cache.set(offers_cache_key,offers, 10*60)
 	payment_history = cache.get(history_cache_key)
 	if not payment_history:
-		payment_history = get_history(user) # products, ru_products, total_sum
-		status = get_status(payment_history['total_sum'])
-		user_account.status = status
-		user_account.save()
+		payment_history = get_history(user) # orders, products, ru_products, total_sum
 		cache.set(history_cache_key,payment_history, 1*60)
+	# получение статуса
+	status = get_status(payment_history['total_sum'])
+	user_account.status = status
+	user_account.save()
 	status = user_account.get_status_display()
-	context = {'promotions':promotions, 
-		'offers':offers, 
+	
+	context = { 
 		'balance':balance,
 		'payment_history':payment_history,
 		'status': status,
@@ -101,56 +86,25 @@ def user_account(request, *args, **kwargs):
 		}
 	return render(request, 'app_goods/account/account.html', context=context)
 
-
-def get_history(user):
-	order_history = Order.objects.filter(user=user) # заказы
-	order_items = OrderItem.objects.select_related('product').filter(order__in=order_history)
-	all_products = []
-	ru_all_products = []
-	orders = [f'#{item.id}: {item.created.date()}' for item in order_history]
-	total_spent = 0
-	for item in order_items:
-		all_products.append(item.product.name)
-		ru_all_products.append(item.product.ru_name)
-		total_spent += item.quantity * item.price
-	return {
-		'orders': orders,
-		'products':set(all_products), 
-		'ru_products':set(ru_all_products),
-		'total_sum':total_spent}
-
-def get_status(spent_sum):
-	if spent_sum <= 100:
-		return 'I'
-	elif 100 < spent_sum <= 200:
-		return 'S'
-	elif 200 < spent_sum <= 300:
-		return 'P'
-	else:
-		return 'G'
-
-
+@login_required
 def order_create(request):
 	cart = Cart(request)
+	translate = is_translate(request)
 	if request.method == 'POST':
 		user = request.user
-		if user.is_authenticated:
-			order = Order.objects.create(user=user)
-			for item in cart:
-				shop = Shop.objects.get(name=item['shop'])
-				OrderItem.objects.create(order=order,
-					product=item['product'],
-					shop=shop,
-					price=item['price'],
-					quantity=item['quantity'])
-			request.session['order_amount'] = str(cart.get_total_price())
-			cart.clear()
-			request.session['order_id'] = order.pk
-			return redirect(reverse('payment_process'))
-			#return render(request, 'app_goods/order/created.html', {'order':order})
-		else:
-			return HttpResponse('Please, log in to make purchases!')
-	return render(request, 'app_goods/order/create.html', {'cart':cart})
+		order = Order.objects.create(user=user)
+		for item in cart:
+			shop = Shop.objects.get(name=item['shop'])
+			OrderItem.objects.create(order=order,
+				product=item['product'],
+				shop=shop,
+				price=item['price'],
+				quantity=item['quantity'])
+		request.session['order_amount'] = str(cart.get_total_price())
+		cart.clear()
+		request.session['order_id'] = order.pk
+		return redirect(reverse('payment_process'))
+	return render(request, 'app_goods/order/create.html', {'cart':cart, 'translate':translate})
 
 def balance_increase(request, *args, **kwargs):
 	if request.method == 'POST':
@@ -192,7 +146,7 @@ def payment_process(request):
 				cart.clear()
 				return redirect('payment_done')
 		else:
-			return redirect('payment_cancelled')
+			return redirect('payment_canceled')
 	return render(request, 'app_goods/payments/process.html', {'order': order, 'amount': amount})
 
 def payment_done(request):
@@ -200,10 +154,3 @@ def payment_done(request):
 
 def payment_canceled(request):
 	return render(request, 'app_goods/payments/canceled.html')
-
-def enough_money(user, ammount):
-	account = UserAccount.objects.get(user=user)
-	if account.balance < float(ammount):
-		return False
-	else:
-		return True

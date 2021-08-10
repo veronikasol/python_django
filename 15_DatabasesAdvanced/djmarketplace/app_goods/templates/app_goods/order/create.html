@@ -13,7 +13,9 @@
 		<ul>
 			{% for item in cart %}
 			<li>
-				{{ item.quantity }} x {{ item.product.name }}
+				{{ item.quantity }} x 
+				{% if translate %}{{ item.product.ru_name }}
+				{% else %}{{ item.product.name }}{% endif %}
 				<span>{{ item.total_price }}</span>
 			</li>
 			{% endfor %}
